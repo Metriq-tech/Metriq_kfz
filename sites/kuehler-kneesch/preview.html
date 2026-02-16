@@ -22,11 +22,17 @@
             color: var(--text-premium);
             background-image:
                 radial-gradient(circle at 10% 20%, rgba(45, 183, 163, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(43, 74, 120, 0.08) 0%, transparent 40%);
-            height: 100vh;
-            overflow: hidden;
+                radial-gradient(circle at 90% 80%, rgba(45, 183, 163, 0.08) 0%, transparent 40%);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                height: 100vh;
+                overflow: hidden;
+            }
         }
 
         .glass-panel {
@@ -45,6 +51,7 @@
 
         .text-gradient {
             background: linear-gradient(135deg, var(--text-premium) 0%, #94a3b8 100%);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
