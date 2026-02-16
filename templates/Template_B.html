@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="dark" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Premium Auto Service | Sweet Spot Excellence</title>
+
+    <!-- Frameworks & Fonts -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg-dark: #0a0a0f;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.9) 0%, rgba(59, 130, 246, 0.7) 100%);
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .text-shadow-strong {
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+
+        const CONFIG = {
+            company: {
+                name: "Premium Auto Service",
+                shortName: "PAS",
+                tagline: "Der Sweet-Spot aus Design & Qualität",
+                primaryColor: "#2563eb"
+            },
+            hero: {
+                title: "Qualität trifft Design.",
+                subtitle: "Ihr verlässlicher Partner für moderne KFZ-Wartung",
+                desc: "Professionelle Werkstatt mit modernem Equipment und fairen Preisen. Wir vereinen erstklassigen Service mit zeitgemäßem Design.",
+                image: "../images/mocks/Audi1.avif"
+            },
+            services: [
+                {
+                    title: "Premium Inspektion",
+                    icon: "verified",
+                    desc: "Umfassende Fahrzeugprüfung nach Herstellervorgaben mit modernster Diagnosetechnik.",
+                    image: "../images/mocks/Inspektion1.avif"
+                },
+                {
+                    title: "Computer-Diagnose",
+                    icon: "analytics",
+                    desc: "Präzise Fehleranalyse und Auslese mit professionellen Diagnosesystemen.",
+                    image: "../images/mocks/diagnose.avif"
+                },
+                {
+                    title: "Karosserie & Lack",
+                    icon: "palette",
+                    desc: "Fachgerechte Reparatur und Lackierung in unserer modernen Werkstatt.",
+                    image: "../images/mocks/karosseriebau.avif"
+                },
+                {
+                    title: "Reifen-Service",
+                    icon: "tire_repair",
+                    desc: "Professioneller Reifenwechsel, Wuchten und sichere Einlagerung.",
+                    image: "../images/mocks/reifenwechsel.avif"
+                }
+            ],
+            brands: ["BMW", "Mercedes", "Audi", "VW", "Porsche", "Alle Marken"],
+            contact: {
+                phone: "+49 40 555 123 456",
+                email: "service@premium-auto.de",
+                address: "Automobilstraße 15, 22765 Hamburg",
+                hours: "Mo-Fr: 08:00 - 18:00 Uhr"
+            }
+        };
+
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 30);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-[#0a0a0f]/95 backdrop-blur-xl py-4 border-b border-white/5' : 'bg-transparent py-6'}`}>
+                    <div className="max-w-7xl mx-auto px-6 lg:px-10 flex justify-between items-center">
+                        <div className="flex items-center gap-3">
+                            <div className="w-11 h-11 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black text-lg">
+                                {CONFIG.company.shortName}
+                            </div>
+                            <div className="hidden md:block">
+                                <div className="text-lg font-bold tracking-tight">{CONFIG.company.name}</div>
+                                <div className="text-[10px] text-gray-400 uppercase tracking-wider">{CONFIG.company.tagline}</div>
+                            </div>
+                        </div>
+                        <div className="hidden lg:flex items-center gap-10 text-sm font-semibold">
+                            <a href="#services" className="hover:text-blue-400 transition-colors">Leistungen</a>
+                            <a href="#about" className="hover:text-blue-400 transition-colors">Über uns</a>
+                            <a href="#contact" className="bg-blue-600 px-6 py-3 rounded-xl hover:bg-blue-500 transition-all">Termin buchen</a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        const Hero = () => (
+            <section className="relative min-h-screen flex items-center overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                    <img src={CONFIG.hero.image} className="w-full h-full object-cover" alt="Hero" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-32">
+                    <div className="max-w-3xl">
+                        <div className="inline-block bg-blue-600/20 border border-blue-500/30 backdrop-blur-sm px-4 py-2 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-8 animate-fade-in-up">
+                            Meisterbetrieb Hamburg
+                        </div>
+
+                        <h1 className="text-6xl md:text-8xl font-black leading-[1.1] tracking-tight mb-6 text-shadow-strong animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                            {CONFIG.hero.title}
+                        </h1>
+
+                        <p className="text-xl md:text-2xl text-gray-200 font-medium mb-4 text-shadow-strong animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                            {CONFIG.hero.subtitle}
+                        </p>
+
+                        <p className="text-lg text-gray-300 max-w-2xl mb-12 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                            {CONFIG.hero.desc}
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row gap-5 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+                            <a href="#contact" className="bg-blue-600 text-white px-10 py-5 rounded-2xl font-bold text-center shadow-xl shadow-blue-600/30 hover:bg-blue-500 hover:scale-105 transition-all">
+                                Jetzt Termin vereinbaren
+                            </a>
+                            <a href="#services" className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-5 rounded-2xl font-bold text-center hover:bg-white/20 transition-all">
+                                Unsere Leistungen
+                            </a>
+                        </div>
+
+                        {/* Trust Badges */}
+                        <div className="flex flex-wrap gap-8 mt-16 pt-8 border-t border-white/10 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                            <div>
+                                <div className="text-3xl font-black text-blue-400">15+</div>
+                                <div className="text-sm text-gray-400 font-medium">Jahre Erfahrung</div>
+                            </div>
+                            <div>
+                                <div className="text-3xl font-black text-blue-400">4.9</div>
+                                <div className="text-sm text-gray-400 font-medium">Google Bewertung</div>
+                            </div>
+                            <div>
+                                <div className="text-3xl font-black text-blue-400">1000+</div>
+                                <div className="text-sm text-gray-400 font-medium">Zufriedene Kunden</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Services = () => (
+            <section id="services" className="py-32 bg-gradient-to-b from-[#0a0a0f] to-[#0f0f1a]">
+                <div className="max-w-7xl mx-auto px-6 lg:px-10">
+                    {/* Section Header */}
+                    <div className="text-center mb-20">
+                        <div className="inline-block bg-blue-600/10 border border-blue-500/20 px-4 py-2 rounded-full text-blue-400 text-xs font-bold uppercase tracking-widest mb-6">
+                            Unsere Expertise
+                        </div>
+                        <h2 className="text-5xl md:text-7xl font-black tracking-tight mb-6">
+                            Premium <span className="text-blue-500">Services</span>
+                        </h2>
+                        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                            Modernste Technik trifft auf handwerkliche Präzision. Wir bieten Ihnen erstklassigen Service für alle gängigen Fahrzeugmarken.
+                        </p>
+                    </div>
+
+                    {/* Services Grid */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {CONFIG.services.map((service, i) => (
+                            <div key={i} className="bg-gradient-to-br from-gray-900 to-gray-950 border border-gray-800 rounded-3xl overflow-hidden card-hover">
+                                <div className="h-56 overflow-hidden relative">
+                                    <img src={service.image} className="w-full h-full object-cover" alt={service.title} />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+                                </div>
+                                <div className="p-8">
+                                    <div className="w-14 h-14 bg-blue-600/10 border border-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 mb-6">
+                                        <span className="material-symbols-outlined text-3xl">{service.icon}</span>
+                                    </div>
+                                    <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+                                    <p className="text-gray-400 leading-relaxed">{service.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Brand Trust Bar */}
+                    <div className="mt-24 pt-16 border-t border-white/5">
+                        <div className="text-center mb-12">
+                            <p className="text-sm text-gray-500 uppercase tracking-widest font-bold">Wir arbeiten mit allen Marken</p>
+                        </div>
+                        <div className="flex flex-wrap justify-center gap-8 text-gray-600 font-bold text-lg">
+                            {CONFIG.brands.map((brand, i) => (
+                                <div key={i} className="px-6 py-3 bg-white/5 rounded-xl border border-white/5 hover:border-blue-500/30 hover:text-blue-400 transition-all">
+                                    {brand}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Contact = () => (
+            <section id="contact" className="py-32 bg-[#0a0a0f]">
+                <div className="max-w-7xl mx-auto px-6 lg:px-10">
+                    <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-[3rem] overflow-hidden relative">
+                        {/* Background Pattern */}
+                        <div className="absolute inset-0 opacity-10">
+                            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+                        </div>
+
+                        <div className="relative z-10 grid lg:grid-cols-2 gap-16 p-12 lg:p-20">
+                            {/* Left: CTA */}
+                            <div className="flex flex-col justify-center">
+                                <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
+                                    Bereit für<br />erstklassigen<br />Service?
+                                </h2>
+                                <p className="text-xl text-blue-100 mb-12 leading-relaxed">
+                                    Vereinbaren Sie noch heute einen Termin und erleben Sie den Unterschied von professionellem KFZ-Service.
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-5">
+                                    <a href={`tel:${CONFIG.contact.phone}`} className="bg-white text-blue-600 px-10 py-5 rounded-2xl font-bold text-center hover:bg-gray-100 transition-all shadow-xl">
+                                        Jetzt anrufen
+                                    </a>
+                                    <a href={`mailto:${CONFIG.contact.email}`} className="bg-blue-800 text-white px-10 py-5 rounded-2xl font-bold text-center hover:bg-blue-900 transition-all">
+                                        E-Mail schreiben
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* Right: Contact Info */}
+                            <div className="flex flex-col justify-center space-y-8">
+                                <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-3xl">
+                                    <div className="flex items-start gap-5">
+                                        <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-2xl">call</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-sm text-blue-200 font-bold uppercase tracking-wider mb-2">Telefon</div>
+                                            <div className="text-2xl font-bold">{CONFIG.contact.phone}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-3xl">
+                                    <div className="flex items-start gap-5">
+                                        <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-2xl">location_on</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-sm text-blue-200 font-bold uppercase tracking-wider mb-2">Adresse</div>
+                                            <div className="text-lg font-bold">{CONFIG.contact.address}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-3xl">
+                                    <div className="flex items-start gap-5">
+                                        <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-2xl">schedule</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-sm text-blue-200 font-bold uppercase tracking-wider mb-2">Öffnungszeiten</div>
+                                            <div className="text-lg font-bold">{CONFIG.contact.hours}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="py-20 bg-[#0a0a0f] border-t border-white/5">
+                <div className="max-w-7xl mx-auto px-6 lg:px-10">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-black">
+                                {CONFIG.company.shortName}
+                            </div>
+                            <div>
+                                <div className="font-bold">{CONFIG.company.name}</div>
+                                <div className="text-xs text-gray-500">{CONFIG.company.tagline}</div>
+                            </div>
+                        </div>
+                        <div className="flex gap-8 text-sm text-gray-500">
+                            <a href="#" className="hover:text-blue-400 transition-colors">Impressum</a>
+                            <a href="#" className="hover:text-blue-400 transition-colors">Datenschutz</a>
+                            <a href="#" className="hover:text-blue-400 transition-colors">AGB</a>
+                        </div>
+                    </div>
+                    <div className="mt-12 pt-8 border-t border-white/5 text-center text-sm text-gray-600">
+                        © 2026 {CONFIG.company.name}. Alle Rechte vorbehalten.
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const App = () => (
+            <div className="min-h-screen">
+                <Navbar />
+                <Hero />
+                <Services />
+                <Contact />
+                <Footer />
+
+                {/* Mobile CTA */}
+                <div className="fixed bottom-6 left-6 right-6 lg:hidden z-50">
+                    <a href={`tel:${CONFIG.contact.phone}`} className="bg-blue-600 text-white flex justify-between items-center p-5 rounded-2xl shadow-2xl shadow-blue-600/40">
+                        <div>
+                            <div className="text-xs text-blue-200 font-bold uppercase tracking-wider">Direkt anrufen</div>
+                            <div className="text-lg font-bold">{CONFIG.contact.phone}</div>
+                        </div>
+                        <div className="bg-white/20 p-3 rounded-xl">
+                            <span className="material-symbols-outlined text-2xl">call</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        );
+
+        createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+
+</html>
