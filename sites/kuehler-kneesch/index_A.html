@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="light" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kühler-Kneesch GmbH & Co. KG | KFZ-Meisterbetrieb in Hamburg</title>
+
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <!-- React Dependencies -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #2b4a78;
+            --bg-light: #f9fafb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .simple-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .simple-card {
+            transition: transform 0.2s ease;
+        }
+
+        .simple-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .cool-accent {
+            color: #2b4a78;
+        }
+
+        .bg-cool-accent {
+            background-color: #2b4a78;
+        }
+
+        .logo-container img {
+            max-height: 88px;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+
+        const CONFIG = {
+            company: {
+                name: "Kühler-Kneesch GmbH & Co. KG",
+                shortName: "Kühler-Kneesch",
+                tagline: "Familienbetrieb in 3. Generation – Ihr Spezialist für Kühler & Klima",
+                primaryColor: "#2b4a78",
+                logo: "images/logo2.png"
+            },
+            hero: {
+                title: "Tradition trifft Präzision.",
+                subtitle: "KFZ-Meisterbetrieb & Kühlerspezialist in Hamburg-Harburg",
+                desc: "Seit drei Generationen stehen wir für fachgerechte Ausführung und persönliche Beratung. Von der 3D-Achsvermessung bis zum Klimaservice – wir finden die beste Lösung für Ihr Fahrzeug.",
+                image: "../../images/mocks/main.avif"
+            },
+            services: [
+                { title: "Kühlsysteme", icon: "ac_unit", desc: "Spezialist für Instandsetzung und Reinigung von Kühlsystemen.", price: "Auf Anfrage", image: "../../images/mocks/kuehler_2.avif" },
+                { title: "Klima-Service", icon: "device_thermostat", desc: "Prüfung und Desinfektion Ihrer Fahrzeugklimaanlage.", price: "ab 79€", image: "../../images/mocks/klimaanlage1.avif" },
+                { title: "Getriebeölwechsel", icon: "oil_barrel", desc: "Fachgerechter Wechsel nach Herstellervorgaben.", price: "ab 149€", image: "../../images/mocks/Nahaufnahme1.avif" },
+                { title: "3D-Achsvermessung", icon: "straighten", desc: "Präzise Fahrwerkseinstellung für maximale Sicherheit.", price: "ab 89€", image: "../../images/mocks/achsenvermessung.avif" }
+            ],
+            contact: {
+                phone: "040 / 77 61 13",
+                email: "info@kuehler-kneesch.de",
+                address: "Stader Straße 78, 21075 Hamburg",
+                hours: "Mo-Fr: 07:00 - 17:30 Uhr, Sa: nach Vereinbarung"
+            },
+            about: {
+                text: "Wir sind ein Familienbetrieb in dritter Generation und legen außer der fachgerechten Ausführung besonderen Wert auf Service und gute Beratung. Unser Ziel ist es, für jedes Problem die beste Lösung zu finden. Dafür nimmt sich der Chef auch gerne persönlich die Zeit.",
+                image: "images/über uns.jpg"
+            }
+        };
+
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <nav className={`sticky top-0 z-50 bg-white transition-all duration-300 ${scrolled ? 'shadow-md' : ''}`}>
+                    <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+                        <div className="flex items-center gap-4">
+                            <div className="logo-container">
+                                <img src={CONFIG.company.logo} alt={CONFIG.company.name} />
+                            </div>
+                            <div className="hidden sm:block">
+                                <div className="font-bold text-lg leading-tight">{CONFIG.company.name}</div>
+                                <div className="text-xs text-gray-500">{CONFIG.company.tagline}</div>
+                            </div>
+                        </div>
+                        <div className="hidden md:flex items-center gap-6">
+                            <a href="#services" className="text-sm font-semibold hover:text-[#2b4a78] transition-colors">Leistungen</a>
+                            <a href="#about" className="text-sm font-semibold hover:text-[#2b4a78] transition-colors">Über uns</a>
+                            <a href="#contact" className="bg-[#2b4a78] text-white px-5 py-2 rounded text-sm font-bold hover:bg-[#1e3a5f] transition-colors">Kontakt</a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        const Hero = () => (
+            <section className="bg-white">
+                <div className="max-w-6xl mx-auto px-4 py-16 md:py-24">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div className="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase mb-6">
+                                Familienbetrieb in 3. Generation
+                            </div>
+                            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                                {CONFIG.hero.title}
+                            </h1>
+                            <p className="text-xl text-gray-600 mb-4 font-medium">{CONFIG.hero.subtitle}</p>
+                            <p className="text-gray-600 mb-8 leading-relaxed">{CONFIG.hero.desc}</p>
+
+                            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                                <a href="#contact" className="bg-[#2b4a78] text-white px-8 py-4 rounded-lg font-bold text-center hover:bg-[#1e3a5f] transition-colors">
+                                    Termin vereinbaren
+                                </a>
+                                <a href={`tel:${CONFIG.contact.phone.replace(/\s/g, '')}`} className="border-2 border-gray-300 px-8 py-4 rounded-lg font-bold text-center hover:border-[#2b4a78] hover:text-[#2b4a78] transition-colors">
+                                    {CONFIG.contact.phone}
+                                </a>
+                            </div>
+
+                            {/* Trust Indicators */}
+                            <div className="flex gap-8 pt-8 border-t border-gray-200">
+                                <div>
+                                    <div className="text-2xl font-bold text-[#2b4a78]">3. Gen</div>
+                                    <div className="text-sm text-gray-600">Tradition</div>
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-bold text-[#2b4a78]">100%</div>
+                                    <div className="text-sm text-gray-600">Meisterqualität</div>
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-bold text-[#2b4a78]">Klima</div>
+                                    <div className="text-sm text-gray-600">Spezialisten</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="relative">
+                            <div className="rounded-2xl overflow-hidden simple-shadow">
+                                <img src={CONFIG.hero.image} className="w-full h-auto object-cover" alt="Kühler-Kneesch Werkstatt" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const About = () => (
+            <section id="about" className="py-20 bg-white">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="grid md:grid-cols-2 gap-16 items-center">
+                        <div className="order-2 md:order-1">
+                            <div className="rounded-2xl overflow-hidden simple-shadow">
+                                <img src={CONFIG.about.image} className="w-full h-auto" alt="Über uns - Kühler-Kneesch" />
+                            </div>
+                        </div>
+                        <div className="order-1 md:order-2">
+                            <div className="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase mb-6">
+                                Persönliche Betreuung
+                            </div>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-8">Über uns</h2>
+                            <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                                {CONFIG.about.text}
+                            </p>
+                            <div className="flex items-center gap-4 p-6 bg-gray-50 rounded-xl border-l-4 border-[#2b4a78]">
+                                <div className="text-sm italic text-gray-700">
+                                    "Unser Ziel ist es, für jedes Problem die beste Lösung zu finden. Dafür nehme ich mir auch gerne persönlich die Zeit."
+                                </div>
+                                <div className="text-sm font-bold">— Hans-Günther Kneesch</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Services = () => (
+            <section id="services" className="py-20 bg-gray-50">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-4">Unsere Leistungen</h2>
+                        <p className="text-gray-600 text-lg">Vom Kühlerbau bis zum modernen KFZ-Service</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {CONFIG.services.map((service, i) => (
+                            <div key={i} className="bg-white rounded-xl overflow-hidden simple-shadow simple-card">
+                                <div className="h-48 overflow-hidden">
+                                    <img src={service.image} className="w-full h-full object-cover" alt={service.title} />
+                                </div>
+                                <div className="p-6">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <span className="material-symbols-outlined text-[#2b4a78] text-3xl">{service.icon}</span>
+                                        <h3 className="text-xl font-bold leading-tight">{service.title}</h3>
+                                    </div>
+                                    <p className="text-gray-600 text-sm mb-4 leading-relaxed">{service.desc}</p>
+                                    <div className="text-[#2b4a78] font-bold text-lg">{service.price}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Additional Info */}
+                    <div className="mt-16 bg-white rounded-2xl p-8 simple-shadow">
+                        <div className="grid md:grid-cols-3 gap-8 text-center">
+                            <div>
+                                <span className="material-symbols-outlined text-[#2b4a78] text-4xl mb-3">engineering</span>
+                                <h4 className="font-bold mb-2">KFZ-Meisterbetrieb</h4>
+                                <p className="text-sm text-gray-600">Alle Marken & Modelle</p>
+                            </div>
+                            <div>
+                                <span className="material-symbols-outlined text-[#2b4a78] text-4xl mb-3">thermometer</span>
+                                <h4 className="font-bold mb-2">Klima- & Kühlerbau</h4>
+                                <p className="text-sm text-gray-600">Spezialisierte Expertise</p>
+                            </div>
+                            <div>
+                                <span className="material-symbols-outlined text-[#2b4a78] text-4xl mb-3">directions_car</span>
+                                <h4 className="font-bold mb-2">Ersatzwagen</h4>
+                                <p className="text-sm text-gray-600">Mobil bleiben während der Reparatur</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Contact = () => (
+            <section id="contact" className="py-20 bg-white">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="bg-[#2b4a78] text-white rounded-2xl p-12 md:p-16">
+                        <div className="grid md:grid-cols-2 gap-12">
+                            <div>
+                                <h2 className="text-4xl md:text-5xl font-bold mb-6">Kontaktieren Sie uns!</h2>
+                                <p className="text-xl mb-8 text-blue-100">Wir finden für jedes Problem die beste Lösung. Rufen Sie uns an!</p>
+
+                                <div className="space-y-6">
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined">call</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-sm text-blue-200 mb-1">Telefon</div>
+                                            <div className="text-2xl font-bold">{CONFIG.contact.phone}</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined">location_on</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-sm text-blue-200 mb-1">Adresse</div>
+                                            <div className="text-lg font-bold">{CONFIG.contact.address}</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined">schedule</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-sm text-blue-200 mb-1">Öffnungszeiten</div>
+                                            <div className="text-lg font-bold">{CONFIG.contact.hours}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center justify-center">
+                                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center w-full">
+                                    <span className="material-symbols-outlined text-6xl mb-4 text-blue-200">contact_support</span>
+                                    <h3 className="text-2xl font-bold mb-4">Persönliche Beratung</h3>
+                                    <p className="text-blue-100 mb-6">Wir nehmen uns Zeit für Ihr Anliegen.</p>
+                                    <a href={`mailto:${CONFIG.contact.email}`} className="inline-block bg-white text-[#2b4a78] px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors w-full">
+                                        E-Mail senden
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="py-12 bg-gray-100 border-t border-gray-200">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div className="flex items-center gap-4">
+                            <div className="logo-container">
+                                <img src={CONFIG.company.logo} alt={CONFIG.company.name} className="grayscale" />
+                            </div>
+                            <div className="text-sm">
+                                <div className="font-bold">{CONFIG.company.name}</div>
+                                <div className="text-gray-500 text-xs">© 2026 Alle Rechte vorbehalten</div>
+                            </div>
+                        </div>
+                        <div className="flex gap-6 text-sm text-gray-600">
+                            <a href="#" className="hover:text-[#2b4a78] transition-colors">Impressum</a>
+                            <a href="#" className="hover:text-[#2b4a78] transition-colors">Datenschutz</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const App = () => (
+            <div className="min-h-screen">
+                <Navbar />
+                <Hero />
+                <About />
+                <Services />
+                <Contact />
+                <Footer />
+
+                {/* Mobile CTA */}
+                <div className="fixed bottom-4 left-4 right-4 md:hidden z-50">
+                    <a href={`tel:${CONFIG.contact.phone.replace(/\s/g, '')}`} className="bg-[#2b4a78] text-white flex justify-between items-center p-4 rounded-xl shadow-lg">
+                        <div>
+                            <div className="text-xs text-blue-200">Jetzt anrufen</div>
+                            <div className="font-bold">{CONFIG.contact.phone}</div>
+                        </div>
+                        <span className="material-symbols-outlined text-3xl">call</span>
+                    </a>
+                </div>
+            </div>
+        );
+
+        createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+
+</html>
