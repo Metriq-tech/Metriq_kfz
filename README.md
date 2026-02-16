@@ -1,27 +1,34 @@
-# Metriq KFZ - Multitenant Website Generator
+# Metriq KFZ - Digital Presence Hub
 
-Dieses Repository dient zur zentralen Verwaltung und Generierung von Webseiten für KFZ-Werkstätten.
+Dieses Repository dient zur zentralen Verwaltung, Generierung und Präsentation von Webseiten für KFZ-Werkstätten und Automotive-Unternehmen.
 
-## Struktur
+## 📁 Projektstruktur
 
-- `templates/`: Enthält die Master-Layouts (Variante A, B, C...).
-- `docs/`: Enthält die generierten Live-Webseiten für die GitHub Pages Veröffentlichung.
-- `images/`: Zentrale Bildverwaltung.
-  - `mocks/`: Allgemeine Platzhalterbilder für Leistungen etc.
-- `scripts/`: Automatisierungsskripte zur Generierung neuer Werkstatt-Seiten.
+- **`sites/`**: Enthält die fertig generierten Live-Projekte für Kunden.
+  - `kuehler-kneesch/`: Das aktuelle Hauptprojekt inkl. aller Entwürfe (Version A, B, C) und dem zentralen Preview-Dashboard.
+- **`templates/`**: Enthält Master-Konzepte und das universelle `Template_preview.html` für neue Kundenpräsentationen.
+- **`images/`**: Zentrale Asset-Verwaltung.
+  - `Metriq_Logo_Transparent.png`: Das offizielle Metriq-Branding.
+  - `mocks/`: Hochwertiges Automotive-Bildmaterial für Radiator-Service, Klimatechnik, etc.
+- **`AI_STATUS.md`**: Interner Statusbericht für die agentische Weiterentwicklung des Projekts.
+- **`Roh-Informationen/`**: (Lokal ignoriert) Enthält Kundenbeschreibungen, Texte und unstrukturiertes Quellmaterial.
 
-## Deployment & Privatsphäre
+## 🚀 Key Features
 
-Die Webseiten werden über GitHub Pages bereitgestellt. Um die Privatsphäre der Kunden zu schützen:
-- Gibt es **keine öffentliche Auflistung** der Werkstätten auf der Hauptseite.
-- Erhält jeder Unterordner eine **zufällige 4-stellige Endung** (z.B. `autodienst-harburg-8273`), sodass die URL nicht einfach erraten werden kann.
+- **Multi-Design Konzepte:** Pro Kunde werden drei strategisch unterschiedliche Designs erstellt (Tradition, Moderne, High-Tech).
+- **Preview Hub:** Jedes Kundenverzeichnis enthält eine `preview.html`, die als zentrales, mobiles Dashboard für die Design-Abnahme dient.
+- **Branding-Konsistenz:** Automatisierte Anwendung des Metriq-Coroporate-Designs (Farben: `#2DB7A3`, `#EAF6F5`, `#0F2436`).
 
-URL Format: `https://[username].github.io/Metriq_kfz/[werkstatt-name]-[random-id]/`
+## 🛠 Workflow
 
-## Workflow
+1.  **Input:** Rohdaten in `Roh-Informationen/` ablegen.
+2.  **Generierung:** Auswahl des passenden Templates aus `templates/`.
+3.  **Vorschau:** Link zur `preview.html` im entsprechenden Unterordner an den Kunden senden.
 
-1. Neues Template in `templates/` erstellen oder ein bestehendes wählen.
-2. Bilder des Kunden in einen entsprechenden Ordner unter `images/` ablegen.
-3. Generierungsskript ausführen:
-   - Das Skript erzeugt automatisch einen Ordner mit Zufalls-ID in `docs/`.
-   - Die URL kann dann direkt an den Kunden kommuniziert werden.
+## 🔒 Privatsphäre & Hygiene
+
+- Rohdaten, interne Baupläne und Statusberichte sind über die `.gitignore` vor versehentlichem Push geschützt.
+- Die Ausspielung erfolgt über ein sauberes Verzeichnis-Mapping direkt in `sites/`.
+
+---
+*Created with ❤️ by Metriq Coding Lab*

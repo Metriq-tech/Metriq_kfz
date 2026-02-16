@@ -19,10 +19,12 @@ Die Überarbeitung der drei Website-Entwürfe (Version A, B, C) für die Firma *
     - Premium-Farbschema mit `#EAF6F5` für Texte.
     - Interaktive Karten mit strategischen Beschreibungen der Entwürfe.
 
+- **Mobile Optimierung:** Das Dashboard ist nun voll responsiv (Scroll-Unterstützung auf Smartphones).
+- **Projekthygiene:** `.gitignore` wurde aktualisiert, um interne Dateien (README, AI_STATUS, Roh-Daten, Templates) zu ignorieren.
+
 ## Offene Punkte / Nächste Schritte
 - Kunden-Feedback zu den drei Versionen einholen.
 - Auswahl einer finalen Version für die Live-Schaltung.
-- Eventuelle Detailanpassungen am gewählten Design.
 
 ---
-**Hinweis:** Dieser Chat hat die Grenze von 25 Nachrichten überschritten. Bitte starte einen neuen Chat und lade diesen Status, um fortzufahren.
+**Hinweis:** Dieser Chat hat das Limit überschritten. Bitte starte einen neuen Chat und lade diesen Status.

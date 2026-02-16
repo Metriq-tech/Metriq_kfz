@@ -4,3 +4,10 @@ node_modules/
 .gemini/
 .agent/
 *.code-workspace
+
+# Project Internal Files
+README.md
+AI_STATUS.md
+Roh-Informationen/
+**/info.txt
+templates/
