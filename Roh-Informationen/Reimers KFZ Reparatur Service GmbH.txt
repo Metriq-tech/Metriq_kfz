@@ -1,0 +1,55 @@
+Hier ist eine detaillierte, strukturierte Zusammenfassung der Inhalte der Website von Reimers KFZ Reparatur Service GmbH:
+
+### 1. Unternehmensprofil
+- **Firmenname:** Reimers KFZ Reparatur Service GmbH
+- **Gründungsjahr:** 2006
+- **Standorte:** Hamburg/Bergedorf
+- **Adresse:** Gerhard-Falk-Straße 2, 21035 Hamburg/Bergedorf
+- **Branche / Spezialisierung:** KFZ-Reparaturen für PKWs, Transporter, LKWs, Anhänger und Wohnmobile
+
+### 2. Geschäftsführer / Inhaber
+- **Geschäftsführer/Inhaber:** Daniel Schwaß
+
+### 3. Leistungen und Angebote
+- **Dienstleistungen:**
+  - Reparatur- und Wartungsarbeiten für PKWs, Transporter, LKWs, Anhänger und Wohnmobile.
+  - **Spezialisierungen:**
+    - DEKRA Hauptuntersuchung und Abgasuntersuchung (täglich).
+    - Sicherheitsprüfungen (SP) und Abnahmen.
+    - Fahrtenschreiberprüfungen (analog und digital).
+  - **Marken / Hersteller:**
+    - Knorr, Haldex, Wabco.
+  - **Zertifizierungen:**
+    - Anerkannter Prüfstützpunkt der DEKRA.
+  
+### 4. Über uns / Firmenphilosophie
+- **Selbstbeschreibung:**
+  - „Seit 2006 sind wir in Hamburg/Bergedorf Ihr Ansprechpartner rund um KFZ-Reparaturen.“
+- **Werte, Mission, USPs:**
+  - Engagierte Kundenbetreuung, umfassende Reparaturangebote und hohe Fachkompetenz.
+- **Unterscheidung von der Konkurrenz:**
+  - Umfassende Dienstleistungen für verschiedene Fahrzeugtypen und direkte Zusammenarbeit mit einem Händlerverbund für schnelle Ersatzteilbeschaffung.
+
+### 5. Kontaktinformationen
+- **Telefon:** 040 7211863
+- **Telefax:** 040 72697614
+- **E-Mail:** reimers-kfz-service@gmx.de
+- **Öffnungszeiten:**
+  - Montag - Donnerstag: 07:30 - 17:00
+  - Freitag: 07:30 - 15:30
+  - Samstags nach Vereinbarung
+- **Anfahrt / Lage:** Gerhard-Falk-Straße 2, 21035 Hamburg/Bergedorf
+
+### 6. Website-Struktur und Inhalte
+- **Seiten/Bereiche:** 
+  - Startseite, Leistungen, Jobs, Kontaktdaten, Datenschutz & Impressum, über Hamburg Bergedorf, über Wentorf.
+- **Besondere Features:** 
+  - Möglichkeiten zur Terminbuchung und direkte Kontaktmöglichkeiten.
+  
+### 7. Originaltexte (wichtig!)
+- **Hero-Section Text:** 
+  - „Reimers Kfz-Reparatur-Service GmbH in Hamburg/Bergedorf“
+- **Über uns Text:** 
+  - „Seit 2006 sind wir in Hamburg/Bergedorf Ihr Ansprechpartner rund um KFZ-Reparaturen.“
+  
+Diese Zusammenfassung sollte dem Webdesigner dabei helfen, die neue Website für Reimers KFZ Reparatur Service GmbH zu erstellen, indem sie alle wesentlichen Informationen strukturiert und übersichtlich bereitstellt.

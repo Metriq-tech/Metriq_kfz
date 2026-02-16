@@ -1,0 +1,43 @@
+### 1. Unternehmensprofil
+- **Firmenname:** Autohaus Bollbuck KG
+- **Rechtsform:** KG (Kommanditgesellschaft)
+- **Standort:** Cuxhavener Str. 256-258, 21149 Hamburg-Neugraben-Fischbek
+- **Branche / Spezialisierung:** Automobilhandel und -service, insbesondere Mitsubishi und Saab
+
+### 2. Geschäftsführer / Inhaber
+- **Name:** n/a (keine Information im Impressum gefunden)
+
+### 3. Leistungen und Angebote
+- **Dienstleistungen/Produkte:**
+  - Verkauf von Neuwagen und Gebrauchtwagen
+  - Wartung und Reparaturdienstleistungen
+- **Marken/Hersteller:**
+  - Mitsubishi
+  - Saab
+- **Zertifizierungen:** Keine spezifischen Zertifizierungen erwähnt.
+
+### 4. Über uns / Firmenphilosophie
+- **Selbstbeschreibung:** Das Unternehmen positioniert sich als kompetente Anlaufstelle für Mitsubishi- und Saab-Fahrzeuge und legt Wert auf qualitativ hochwertige Dienstleistungen.
+- **Werte/Mission:** Kundenorientierung und Servicequalität stehen im Vordergrund.
+- **USPs:** Kombination aus Fahrzeugverkauf und umfassenden Serviceleistungen.
+
+### 5. Kontaktinformationen
+- **Telefon:** +49 40 70103360
+- **E-Mail:** keine E-Mail-Adresse angegeben
+- **Öffnungszeiten:** keine Informationen angegeben
+- **Anfahrt / Lage:** Cuxhavener Str. 256-258, 21149 Hamburg-Neugraben-Fischbek
+
+### 6. Website-Struktur und Inhalte
+- **Seiten/Bereiche:** 
+  - Startseite
+  - Informationen zur Mitsubishi- und Saab-Vertretung
+  - Impressum
+- **Blog, News, Referenzen:** Keine entsprechenden Bereiche oder Features erwähnt.
+- **Call-to-Actions:** Keine spezifischen Call-to-Actions erkennbar.
+- **Besondere Features:** Keine besonderen Features wie Online-Terminbuchung oder Konfigurator erwähnt.
+
+### 7. Originaltexte (wichtig!)
+- **Hero-Section Text:** "Herzlich Willkommen bei Autohaus Bollbuck KG"
+- **Slogans/Headlines:** Es gibt keine markanten Slogans oder spezifische Headlines erwähnt. 
+
+Diese Zusammenfassung stellt alle relevanten Informationen bereit, die ein Webdesigner benötigt, um eine neue Website für das Autohaus Bollbuck KG zu erstellen.

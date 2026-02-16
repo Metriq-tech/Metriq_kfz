@@ -1,0 +1,50 @@
+Hier ist die detaillierte, strukturierte Zusammenfassung der Website-Inhalte von Özkan KFZ-Service:
+
+### 1. Unternehmensprofil
+- **Firmenname:** Özkan KFZ-Service
+- **Rechtsform:** n/a
+- **Gründungsjahr:** n/a
+- **Standort:** Hamburg
+- **Adresse:** Ausschläger Elbdeich 109, 20539 Hamburg-Billwerder Ausschlag
+- **Branche / Spezialisierung:** KFZ-Werkstatt, spezialisiert auf Reparaturen und Hauptuntersuchungen von PKWs, LKWs und Transportern.
+
+### 2. Geschäftsführer / Inhaber 
+- **Name:** n/a (kein Impressum vorhanden)
+
+### 3. Leistungen und Angebote
+- **Hauptuntersuchung (HU) & Abgasuntersuchung (AU):** Anmeldung und Durchführung in der Werkstatt.
+- **Reparaturen:** Für alle Fabrikate, inklusive PKWs, LKWs und Transportern.
+- **Checks und Diagnosen:** Regelmäßige Überprüfungen zur Gewährleistung der Fahrzeug-Sicherheit.
+- **Ölwechsel:** Verlängert die Lebenszeit des Motors.
+- **Karosseriearbeiten:** Schadensbehebung für PKW und LKW.
+- **Reifenservice:** Reifenwechsel mindestens zweimal im Jahr.
+- **Urlaubs- und Wintercheck:** Prüfung des Fahrzeugs auf Sicherheit.
+
+### 4. Über uns / Firmenphilosophie
+- **Selbstbeschreibung:** Özkan KFZ-Service ist ein Familienbetrieb in Hamburg-Rothenburgsort, der seit 28 Jahren im Geschäft ist.
+- **Werte und Mission:** Fokussierung auf die Sicherheit der Fahrzeuge und hohen Kundenservice.
+- **USPs:** Individuelle Betreuung als Familienbetrieb, umfangreiche Erfahrung und Fachkompetenz.
+
+### 5. Kontaktinformationen
+- **Telefon:** 040 78 25 65
+- **E-Mail:** kontakt@özkan-kfzservice.de
+- **Fax:** 040 819 780 61
+- **Öffnungszeiten:** 
+  - Mo-Fr: 08:30 - 18:00 
+  - Samstag: 08:30 - 16:00
+- **Anfahrt / Lage:** Standort in Hamburg-Billwerder Ausschlag, erreichbar über die Hauptverkehrsstraßen.
+
+### 6. Website-Struktur und Inhalte
+- **Seiten/Bereiche:** 
+  - Home
+  - Über Uns
+  - Unser Service
+  - Kontakt
+- **Besonderheiten:** Es gibt eine klare Call-to-Action zur Kontaktaufnahme, z. B. durch Telefonnummer und E-Mail.
+- **Features:** Keine besonderen Features wie Online-Terminbuchung erkennbar.
+
+### 7. Originaltexte
+- **Hero-Section Text:** "Özkan KFZ Service - Die KFZ Werkstatt Ihres Vertrauens"
+- **Über-uns Text:** "Ihr Kfz Service Özkan, ein Familienbetrieb in Hamburg-Rothenburgsort seit 28 Jahren. Wir kümmern uns um die Sicherheit Ihres Fahrzeugs und legen großen Wert auf Kundenservice."
+
+Diese Zusammenfassung sollte dem Webdesigner helfen, eine neue Website für die Özkan KFZ-Service zu erstellen.

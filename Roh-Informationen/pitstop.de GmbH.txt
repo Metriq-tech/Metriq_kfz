@@ -1,0 +1,67 @@
+### Zusammenfassung der Website-Inhalte von pitstop.de GmbH
+
+#### 1. Unternehmensprofil
+- **Firmenname**: pitstop.de GmbH
+- **Rechtsform**: GmbH
+- **Gründungsjahr**: n/a
+- **Standort(e)**: Stader Str. 148-156, 21075 Hamburg-Heimfeld
+- **Branche / Spezialisierung**: KFZ-Werkstatt-Service 
+
+#### 2. Geschäftsführer / Inhaber
+- **Geschäftsführer/Inhaber**: n/a
+
+#### 3. Leistungen und Angebote
+- **Angebotene Dienstleistungen**:
+  - Inspektion
+  - TÜV
+  - Ölwechsel
+  - Radwechsel
+  - Bremsen
+  - Auspuff
+  - Fahrwerk
+  - Klima
+  - Batterie
+  - Fahrzeugdiagnose
+  - Saison-Check
+  - Glas
+  - Reifen
+- **Besonderheiten**: Faire Preise, transparente Kostenvoranschläge, qualitativ hochwertige Ersatzteile in Erstausrüsterqualität
+- **Marken / Hersteller**: ATE, Castrol, Sachs, MANN-Filter, TÜV Rheinland
+- **Zertifizierungen**: Meisterbetrieb
+
+#### 4. Über-uns / Firmenphilosophie
+- **Selbstbeschreibung**: pitstop.de steht für Fairness, Transparenz und Qualität in der Kfz-Wartung und bietet Dienstleistungen deutschlandweit an.
+- **Werte und Mission**: Die Sicherheit der Kunden hat oberste Priorität. Transparente Kommunikation und Kundeneinbindung bei Reparaturen sind zentrale Elemente ihres Services.
+- **USPs**: Keine versteckten Kosten, faire Termine, dokumentierte Arbeit und Erhalt der Fahrzeuggarantie.
+
+#### 5. Kontaktinformationen
+- **Telefon**: +49 4052982302
+- **E-Mail**: n/a
+- **Öffnungszeiten**: n/a
+- **Anfahrt / Lage**: Stader Str. 148-156, 21075 Hamburg-Heimfeld
+
+#### 6. Website-Struktur und Inhalte
+- **Seiten/Bereiche der Website**:
+  - Startseite
+  - Filialsuche
+  - Flottenkundenbereich
+  - Dienstleistungen
+  - Über uns
+  - Karriere
+  - Presse
+  - Kontakt
+  - Impressum
+  - Datenschutz
+- **Call-to-Actions**: Online-Terminbuchung, Newsletter-Anmeldung
+- **Besondere Features**: Filialsuche, Branchenbewertungen
+
+#### 7. Originaltexte
+- **Hero-Section Text**: "Deine Kfz-Werkstatt für Inspektion, TÜV, Ölwechsel & Bremsen."
+- **5 Gründe für pitstop**: 
+  1. Faire Preise
+  2. Faire Termine
+  3. Fairer Service
+  4. Faire Qualität
+  5. Faire Arbeit
+
+Diese Zusammenfassung bietet eine umfassende Grundlage für die Gestaltung einer neuen Website der pitstop.de GmbH.
