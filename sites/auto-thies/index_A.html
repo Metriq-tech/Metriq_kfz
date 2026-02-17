@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html class="light" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Auto Thies | Ihr Partner für Gebrauchtwagen & Service in Hamburg</title>
+
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
+        rel="stylesheet">
+
+    <!-- React Dependencies -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #EAB308;
+            --bg-light: #f9fafb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .simple-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .simple-card {
+            transition: transform 0.2s ease;
+        }
+
+        .simple-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .material-symbols-outlined {
+            display: inline-block;
+            overflow: hidden;
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            font-display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <!-- Back to Dashboard -->
+    <a href="preview.html"
+        class="fixed top-4 left-4 z-[100] flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-md border border-gray-200 rounded-full shadow-lg text-[#2b4a78] hover:bg-[#2b4a78] hover:text-white transition-all duration-300"
+        title="Zurück zum Dashboard">
+        <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+
+        const CONFIG = {
+            company: {
+                name: "Auto Thies",
+                shortName: "Auto Thies",
+                tagline: "Meisterwerkstatt & Fahrzeughandel in Hamburg",
+                primaryColor: "#EAB308",
+                logo: "images/logo.png"
+            },
+            hero: {
+                title: "Meisterwerkstatt & Fahrzeughandel mit Tradition.",
+                subtitle: "Seit 1926 Ihr Partner in Hamburg",
+                desc: "Über 90 Jahre Entwicklung am Puls der Zeit. Als inhabergeführtes Unternehmen stehen wir für Kundenfreundlichkeit und maßgeschneiderte Lösungen rund um Ihr Fahrzeug.",
+                image: "../../images/mocks/Alpha_Romeo1.avif"
+            },
+            services: [
+                { title: "Fahrzeugverkauf", icon: "directions_car", desc: "Große Auswahl an Neu- und Gebrauchtwagen sowie Transportern.", price: "Top Konditionen", image: "../../images/mocks/BMW1.avif" },
+                { title: "Werkstatt-Service", icon: "build", desc: "Inspektion, Reparatur und Karosserieinstandsetzung für alle Marken.", price: "Meisterqualität", image: "../../images/mocks/werkstatt.avif" },
+                { title: "Oldtimer", icon: "history", desc: "Fachgerechte Vermittlung und Beratung für Ihren Klassiker.", price: "Individuell", image: "../../images/mocks/Oldtimer1.avif" },
+                { title: "Finanzierung", icon: "payments", desc: "Attraktive Leasing- und Finanzierungsmodelle für Ihr nächstes Auto.", price: "Ab 1.99%", image: "../../images/mocks/Nahaufnahme1.avif" }
+            ],
+            contact: {
+                phone: "040-767 30 60",
+                address: "Kleiner Schippsee 7-9, 21073 Hamburg",
+                hours: "Mo-Fr: 08:30 - 18:00 Uhr, Sa: 09:00 - 14:00 Uhr"
+            },
+            inventory: [
+                { name: "Audi A6 Avant", price: "42.900 €", details: "Bj. 2021 | 45.000 km | Diesel", image: "../../images/mocks/Audi1.avif" },
+                { name: "BMW 3er M-Sport", price: "38.500 €", details: "Bj. 2020 | 32.000 km | Benzin", image: "../../images/mocks/BMW1.avif" },
+                { name: "Mercedes C-Klasse", price: "45.000 €", details: "Bj. 2022 | 15.000 km | Hybrid", image: "../../images/mocks/Mercedes1.avif" }
+            ]
+        };
+
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <nav className={`sticky top-0 z-50 bg-white transition-all duration-300 ${scrolled ? 'shadow-md' : ''}`}>
+                    <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+                        <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                            <img src={CONFIG.company.logo} alt={CONFIG.company.name} className="h-12 w-auto object-contain" />
+                            <div className="hidden sm:block text-left">
+                                <div className="font-bold text-lg leading-tight">{CONFIG.company.name}</div>
+                                <div className="text-xs text-gray-500">{CONFIG.company.tagline}</div>
+                            </div>
+                        </a>
+                        <div className="flex items-center gap-3 md:gap-6">
+                            <a href="#services" className="text-sm font-semibold hover:text-yellow-600 transition-colors">Leistungen</a>
+                            <a href="#inventory" className="text-sm font-semibold hover:text-yellow-600 transition-colors">Autohandel</a>
+                            <a href="#contact" className="bg-yellow-500 text-black px-5 py-2 rounded text-sm font-bold hover:bg-yellow-400 transition-colors">Kontakt</a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        const Hero = () => (
+            <section className="bg-white">
+                <div className="max-w-6xl mx-auto px-4 py-16 md:py-24">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div className="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold uppercase mb-6">
+                                Inhabergeführt seit 1926
+                            </div>
+                            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                                {CONFIG.hero.title}
+                            </h1>
+                            <p className="text-xl text-gray-600 mb-4 font-medium">{CONFIG.hero.subtitle}</p>
+                            <p className="text-gray-600 mb-8 leading-relaxed">{CONFIG.hero.desc}</p>
+
+                            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                                <a href="#contact" className="bg-yellow-500 text-black px-8 py-4 rounded-lg font-bold text-center hover:bg-yellow-400 transition-colors shadow-lg shadow-yellow-200">
+                                    Jetzt anfragen
+                                </a>
+                                <a href={`tel:${CONFIG.contact.phone}`} className="border-2 border-gray-300 px-8 py-4 rounded-lg font-bold text-center hover:border-yellow-500 hover:text-yellow-600 transition-colors">
+                                    {CONFIG.contact.phone}
+                                </a>
+                            </div>
+
+                            {/* Trust Indicators */}
+                            <div className="flex gap-8 pt-8 border-t border-gray-200">
+                                <div>
+                                    <div className="text-2xl font-bold text-yellow-600">95+</div>
+                                    <div className="text-sm text-gray-600">Jahre Erfahrung</div>
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-bold text-yellow-600">Region</div>
+                                    <div className="text-sm text-gray-600">HH-Harburg</div>
+                                </div>
+                                <div>
+                                    <div className="text-2xl font-bold text-yellow-600">Fair</div>
+                                    <div className="text-sm text-gray-600">Gebrauchtwagen</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="relative">
+                            <div className="rounded-2xl overflow-hidden simple-shadow">
+                                <img src={CONFIG.hero.image} className="w-full h-[400px] object-cover" alt="Auto Thies Hamburg" />
+                            </div>
+                            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl simple-shadow hidden lg:block max-w-[200px]">
+                                <div className="text-yellow-500 font-bold mb-1">90 Jahre+</div>
+                                <p className="text-xs text-gray-500 leading-tight">Tradition und Vertrauen im Hamburger Süden.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Services = () => (
+            <section id="services" className="py-20 bg-gray-50">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-4">Unsere Leistungen</h2>
+                        <p className="text-gray-600 text-lg">Vom ersten Auto bis zum regelmäßigen Service</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {CONFIG.services.map((service, i) => (
+                            <div key={i} className="bg-white rounded-xl overflow-hidden simple-shadow simple-card">
+                                <div className="h-40 overflow-hidden">
+                                    <img src={service.image} className="w-full h-full object-cover" alt={service.title} />
+                                </div>
+                                <div className="p-6">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <span className="material-symbols-outlined text-yellow-600 text-3xl">{service.icon}</span>
+                                        <h3 className="text-xl font-bold">{service.title}</h3>
+                                    </div>
+                                    <p className="text-gray-600 mb-4 text-sm">{service.desc}</p>
+                                    <div className="text-yellow-600 font-bold text-lg">{service.price}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Additional Info */}
+                    <div className="mt-16 bg-white rounded-2xl p-8 simple-shadow border-l-4 border-yellow-500">
+                        <div className="grid md:grid-cols-3 gap-8 text-center">
+                            <div>
+                                <span className="material-symbols-outlined text-yellow-600 text-4xl mb-3">verified</span>
+                                <h4 className="font-bold mb-2">Qualität</h4>
+                                <p className="text-sm text-gray-600">Gepflegte Gebrauchtwagen</p>
+                            </div>
+                            <div>
+                                <span className="material-symbols-outlined text-yellow-600 text-4xl mb-3">volunteer_activism</span>
+                                <h4 className="font-bold mb-2">Persönlich</h4>
+                                <p className="text-sm text-gray-600">Inhabergeführt</p>
+                            </div>
+                            <div>
+                                <span className="material-symbols-outlined text-yellow-600 text-4xl mb-3">home_pin</span>
+                                <h4 className="font-bold mb-2">Etabliert</h4>
+                                <p className="text-sm text-gray-600">Tief verwurzelt in Hamburg</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Inventory = () => (
+            <section id="inventory" className="py-20 bg-white">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-4">Unser Fahrzeugangebot</h2>
+                        <p className="text-gray-600 text-lg">Entdecken Sie unsere aktuellsten Neuzugänge</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {CONFIG.inventory.map((car, i) => (
+                            <div key={i} className="bg-gray-50 rounded-2xl overflow-hidden simple-shadow group cursor-pointer border border-gray-100">
+                                <div className="h-56 overflow-hidden relative">
+                                    <img src={car.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={car.name} />
+                                    <div className="absolute top-4 right-4 bg-yellow-500 text-black px-3 py-1 rounded-full text-xs font-bold">Top Deal</div>
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold mb-2">{car.name}</h3>
+                                    <p className="text-sm text-gray-500 mb-4">{car.details}</p>
+                                    <div className="flex justify-between items-center">
+                                        <div className="text-2xl font-black text-gray-900">{car.price}</div>
+                                        <div className="text-yellow-600 font-bold text-sm uppercase tracking-wider flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                                            Details <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="mt-12 text-center">
+                        <a href="#contact" className="inline-block border-2 border-gray-200 px-10 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all">
+                            Gesamten Bestand ansehen
+                        </a>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Contact = () => (
+            <section id="contact" className="py-20 bg-white">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="bg-yellow-500 text-black rounded-2xl p-6 sm:p-12 md:p-16 relative overflow-hidden">
+                        <div className="relative z-10 grid md:grid-cols-2 gap-8 md:gap-12">
+                            <div>
+                                <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">Besuchen Sie uns am Schippsee</h2>
+                                <p className="text-lg md:text-xl mb-6 md:mb-8 text-yellow-900 font-medium">Wir nehmen uns Zeit für Ihre Wünsche und finden gemeinsam das passende Fahrzeug.</p>
+
+                                <div className="space-y-6">
+                                    <div className="flex items-center md:items-start gap-4">
+                                        <div className="w-10 h-10 md:w-12 md:h-12 bg-black/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-xl md:text-2xl">call</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] md:text-sm text-yellow-900 mb-1">Telefon</div>
+                                            <div className="text-xl md:text-2xl font-bold tracking-tight">{CONFIG.contact.phone}</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 bg-black/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined">location_on</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-sm text-yellow-900 mb-1">Adresse</div>
+                                            <div className="text-lg font-bold">{CONFIG.contact.address}</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-start gap-4">
+                                        <div className="w-12 h-12 bg-black/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined">schedule</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-sm text-yellow-900 mb-1">Öffnungszeiten</div>
+                                            <div className="text-lg font-bold">{CONFIG.contact.hours}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center justify-center mt-8 md:mt-0">
+                                <div className="bg-white/30 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center w-full border border-white/20">
+                                    <span className="material-symbols-outlined text-5xl md:text-6xl mb-4 text-yellow-900">handshake</span>
+                                    <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Persönliche Beratung</h3>
+                                    <p className="text-yellow-950 mb-6 text-sm md:text-base">Über 90 Jahre Tradition verpflichten uns zu bestem Service. Kommen Sie vorbei!</p>
+                                    <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONFIG.contact.address)}`} target="_blank" className="inline-block w-full sm:w-auto bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition-colors shadow-lg">
+                                        Anfahrt planen
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="py-12 bg-gray-100 border-t border-gray-200">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div className="flex items-center gap-3">
+                            <img src={CONFIG.company.logo} alt={CONFIG.company.name} className="h-8 w-auto object-contain" />
+                            <div className="text-sm">
+                                <div className="font-bold">{CONFIG.company.name}</div>
+                                <div className="text-gray-500 text-xs">© 2026 Alle Rechte vorbehalten</div>
+                            </div>
+                        </div>
+                        <div className="flex gap-6 text-sm text-gray-600">
+                            <a href="#" className="hover:text-yellow-600 transition-colors">Impressum</a>
+                            <a href="#" className="hover:text-yellow-600 transition-colors">Datenschutz</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const App = () => (
+            <div className="min-h-screen">
+                <Navbar />
+                <Hero />
+                <Services />
+                <Inventory />
+                <Contact />
+                <Footer />
+
+                {/* Mobile CTA */}
+                <div className="fixed bottom-4 left-4 right-4 md:hidden z-50">
+                    <a href={`tel:${CONFIG.contact.phone}`} className="bg-yellow-500 text-black flex justify-between items-center p-4 rounded-xl shadow-lg border border-yellow-600">
+                        <div>
+                            <div className="text-xs text-yellow-900">Jetzt anrufen</div>
+                            <div className="font-bold">{CONFIG.contact.phone}</div>
+                        </div>
+                        <span className="material-symbols-outlined text-3xl">call</span>
+                    </a>
+                </div>
+            </div>
+        );
+
+        createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+
+</html>
