@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="dark" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Premium Autoglas Service | Eckelmann Hamburg</title>
+
+    <!-- Frameworks & Fonts -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
+        rel="stylesheet">
+
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #FDE800;
+            /* Warm Yellow */
+            --bg-dark: #0a0a0f;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.9) 0%, rgba(245, 158, 11, 0.7) 100%);
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(251, 191, 36, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .text-shadow-strong {
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .material-symbols-outlined {
+            display: inline-block;
+            overflow: hidden;
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            font-display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Back to Dashboard -->
+    <a href="preview.html"
+        class="fixed top-4 left-4 z-[100] flex items-center justify-center w-10 h-10 bg-black/40 backdrop-blur-md border border-white/10 rounded-full shadow-2xl text-white hover:bg-[#FDE800] hover:text-black transition-all duration-300"
+        title="Zurück zum Dashboard">
+        <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+
+        const CONFIG = {
+            company: {
+                name: "Autoglas Eckelmann",
+                shortName: "AE",
+                tagline: "Qualität & Präzision in Hamburg",
+                primaryColor: "#FDE800",
+                logo: "images/Logo.png"
+            },
+            hero: {
+                title: "Kristallklare Sicht.",
+                subtitle: "Ihr Experte für Autoglas & Reparaturservice",
+                desc: "Wir vereinen handwerkliche Perfektion mit modernstem Service. Ob Steinschlag oder kompletter Scheibentausch – wir sorgen für Ihre Sicherheit auf Hamburgs Straßen.",
+                image: "../../images/mocks/Frontscheibe4.jpg"
+            },
+            services: [
+                {
+                    title: "Steinschlag-Reparatur",
+                    icon: "verified",
+                    desc: "Schnelle und sichere Reparatur von Steinschlägen mit modernstem Spezialharz.",
+                    image: "../../images/mocks/steinschlag.jpg"
+                },
+                {
+                    title: "Scheibentausch",
+                    icon: "grid_view",
+                    desc: "Fachgerechter Austausch von Front-, Heck- und Seitenscheiben in Erstausrüsterqualität.",
+                    image: "../../images/mocks/Glas-Reparatur1.jpg"
+                },
+                {
+                    title: "Vor-Ort Service",
+                    icon: "local_shipping",
+                    desc: "Unser mobiler Service kommt zu Ihnen nach Hause oder an den Arbeitsplatz.",
+                    image: "images/wagen1.jpg"
+                },
+                {
+                    title: "Glasreinigung & Schutz",
+                    icon: "flare",
+                    desc: "Spezielle Versiegelungen für bessere Sicht bei Regen und Schutz vor Verschmutzung.",
+                    image: "images/autoglas-1.jpg"
+                }
+            ],
+            brands: ["PKW", "LKW", "Transporter", "Oldtimer", "Wohnmobile", "Alle Marken"],
+            contact: {
+                phone: "0172 – 59 100 51",
+                email: "thomas.eckelmann@gmail.com",
+                address: "Herzog-Alf-Weg 6A, 22457 Hamburg",
+                hours: "Mo-Fr: 08:00 - 18:00 Uhr"
+            }
+        };
+
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 30);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/95 py-3 border-b border-white/10 shadow-2xl' : 'bg-black/80 py-5 border-b border-white/5 shadow-lg'} backdrop-blur-xl`}>
+                    <div className="max-w-7xl mx-auto px-6 lg:px-10 flex justify-between items-center">
+                        <a href="#" className="flex items-center gap-4 group">
+                            <div className="p-1 group-hover:scale-110 transition-transform duration-500">
+                                <img src={CONFIG.company.logo} alt="Logo" className="h-12 md:h-14 w-auto object-contain [filter:drop-shadow(0_0_1px_rgba(255,255,255,0.9))_drop-shadow(0_0_12px_rgba(255,255,255,0.3))]" />
+                            </div>
+                            <div className="hidden md:block">
+                                <div className="text-xl font-black tracking-tight text-white">{CONFIG.company.name}</div>
+                                <div className="text-[10px] text-[#FDE800] uppercase tracking-[0.2em] font-extrabold">{CONFIG.company.tagline}</div>
+                            </div>
+                        </a>
+                        <div className="hidden lg:flex items-center gap-10 text-sm font-semibold">
+                            <a href="#services" className="text-gray-300 hover:text-[#FDE800] transition-colors">Leistungen</a>
+                            <a href="#contact" className="bg-[#FDE800] text-black px-6 py-3 rounded-xl hover:opacity-90 transition-all shadow-lg shadow-[#FDE800]/20">Termin vereinbaren</a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        const Hero = () => (
+            <section className="relative min-h-screen flex items-center overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                    <img src={CONFIG.hero.image} className="w-full h-full object-cover" alt="Hero" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-32">
+                    <div className="max-w-3xl">
+                        <div className="inline-block bg-[#FDE800]/20 border border-[#FDE800]/30 backdrop-blur-sm px-4 py-2 rounded-full text-[#FDE800] text-xs font-bold uppercase tracking-widest mb-8 animate-fade-in-up">
+                            Meisterbetrieb Hamburg
+                        </div>
+
+                        <h1 className="text-6xl md:text-8xl font-black leading-[1.1] tracking-tight mb-6 text-shadow-strong animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                            {CONFIG.hero.title}
+                        </h1>
+
+                        <p className="text-xl md:text-2xl text-gray-200 font-medium mb-4 text-shadow-strong animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                            {CONFIG.hero.subtitle}
+                        </p>
+
+                        <p className="text-lg text-gray-300 max-w-2xl mb-12 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                            {CONFIG.hero.desc}
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row gap-5 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+                            <a href="#contact" className="bg-[#FDE800] text-black px-10 py-5 rounded-2xl font-bold text-center shadow-xl shadow-[#FDE800]/20 hover:opacity-90 hover:scale-105 transition-all">
+                                Jetzt Termin sichern
+                            </a>
+                            <a href="#services" className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-5 rounded-2xl font-bold text-center hover:bg-white/20 transition-all">
+                                Unsere Leistungen
+                            </a>
+                        </div>
+
+                        {/* Trust Badges */}
+                        <div className="flex flex-wrap gap-8 mt-16 pt-8 border-t border-white/10 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                            <div>
+                                <div className="text-3xl font-black text-[#FDE800]">Sofort</div>
+                                <div className="text-sm text-gray-400 font-medium">Hilfe bei Glasschäden</div>
+                            </div>
+                            <div>
+                                <div className="text-3xl font-black text-[#FDE800]">100%</div>
+                                <div className="text-sm text-gray-400 font-medium">Abrechnung mit Versicherung</div>
+                            </div>
+                            <div>
+                                <div className="text-3xl font-black text-[#FDE800]">Mobil</div>
+                                <div className="text-sm text-gray-400 font-medium">Service im Raum Hamburg</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Services = () => (
+            <section id="services" className="py-32 bg-gradient-to-b from-[#0a0a0f] to-[#0f0f1a]">
+                <div className="max-w-7xl mx-auto px-6 lg:px-10">
+                    {/* Section Header */}
+                    <div className="text-center mb-20">
+                        <div className="inline-block bg-[#FDE800]/10 border border-[#FDE800]/20 px-4 py-2 rounded-full text-[#FDE800] text-xs font-bold uppercase tracking-widest mb-6">
+                            Unsere Expertise
+                        </div>
+                        <h2 className="text-5xl md:text-7xl font-black tracking-tight mb-6">
+                            Autoglas <span className="text-[#FDE800]">Premium</span>
+                        </h2>
+                        <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                            Modernste Technik trifft auf handwerkliche Präzision. Wir bieten Ihnen erstklassigen Service für alle Glasarten und Fahrzeugmodelle.
+                        </p>
+                    </div>
+
+                    {/* Services Grid */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {CONFIG.services.map((service, i) => (
+                            <div key={i} className="bg-gradient-to-br from-gray-900 to-gray-950 border border-gray-800 rounded-3xl overflow-hidden card-hover">
+                                <div className="h-56 overflow-hidden relative">
+                                    <img src={service.image} className="w-full h-full object-cover" alt={service.title} />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+                                </div>
+                                <div className="p-8">
+                                    <div className="w-14 h-14 bg-[#FDE800]/10 border border-[#FDE800]/20 rounded-2xl flex items-center justify-center text-[#FDE800] mb-6">
+                                        <span className="material-symbols-outlined text-3xl">{service.icon}</span>
+                                    </div>
+                                    <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+                                    <p className="text-gray-400 leading-relaxed">{service.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Brand Trust Bar */}
+                    <div className="mt-24 pt-16 border-t border-white/5">
+                        <div className="text-center mb-12">
+                            <p className="text-sm text-gray-500 uppercase tracking-widest font-bold">Professioneller Service für alle Fahrzeugklassen</p>
+                        </div>
+                        <div className="flex flex-wrap justify-center gap-8 text-gray-600 font-bold text-lg">
+                            {CONFIG.brands.map((brand, i) => (
+                                <div key={i} className="px-6 py-3 bg-white/5 rounded-xl border border-white/5 hover:border-[#FDE800]/30 hover:text-[#FDE800] transition-all">
+                                    {brand}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Contact = () => (
+            <section id="contact" className="py-32 bg-[#0a0a0f]">
+                <div className="max-w-7xl mx-auto px-6 lg:px-10">
+                    <div className="bg-gradient-to-br from-[#FDE800] to-[#E5D200] rounded-3xl md:rounded-[3rem] overflow-hidden relative">
+                        {/* Background Pattern */}
+                        <div className="absolute inset-0 opacity-10">
+                            <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+                        </div>
+
+                        <div className="relative z-10 grid lg:grid-cols-2 gap-8 md:gap-16 p-6 sm:p-12 md:p-16 lg:p-20 text-black">
+                            {/* Left: CTA */}
+                            <div className="flex flex-col justify-center text-center lg:text-left">
+                                <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 md:mb-8 leading-tight">
+                                    Schnelle<br />Hilfe bei<br />Glasschaden?
+                                </h2>
+                                <p className="text-lg md:text-xl text-yellow-900 mb-10 md:mb-12 leading-relaxed">
+                                    Rufen Sie uns direkt an. Wir kümmern uns um alles – von der Reparatur bis zur Abrechnung mit Ihrer Versicherung.
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-4 md:gap-5 mb-8 lg:mb-0">
+                                    <a href={`tel:${CONFIG.contact.phone}`} className="bg-black text-[#FDE800] px-8 md:px-10 py-4 md:py-5 rounded-2xl font-bold text-center hover:bg-gray-900 transition-all shadow-xl">
+                                        Jetzt anrufen
+                                    </a>
+                                    <a href={`mailto:${CONFIG.contact.email}`} className="bg-yellow-100 text-black px-8 md:px-10 py-4 md:py-5 rounded-2xl font-bold text-center hover:bg-white transition-all">
+                                        E-Mail schreiben
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* Right: Contact Info */}
+                            <div className="flex flex-col justify-center space-y-4 md:space-y-8">
+                                <div className="bg-black/10 backdrop-blur-sm border border-black/10 p-6 md:p-8 rounded-3xl">
+                                    <div className="flex items-center md:items-start gap-4 md:gap-5">
+                                        <div className="w-10 h-10 md:w-12 md:h-12 bg-black/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-xl md:text-2xl">call</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] md:text-sm text-yellow-900 font-bold uppercase tracking-wider mb-1 md:mb-2">Telefon</div>
+                                            <div className="text-xl md:text-2xl font-bold tracking-tight">{CONFIG.contact.phone}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-black/10 backdrop-blur-sm border border-black/10 p-8 rounded-3xl">
+                                    <div className="flex items-start gap-5">
+                                        <div className="w-12 h-12 bg-black/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-2xl">location_on</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-sm text-yellow-900 font-bold uppercase tracking-wider mb-2">Standort</div>
+                                            <div className="text-lg font-bold">{CONFIG.contact.address}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-black/10 backdrop-blur-sm border border-black/10 p-8 rounded-3xl">
+                                    <div className="flex items-start gap-5">
+                                        <div className="w-12 h-12 bg-black/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                            <span className="material-symbols-outlined text-2xl">schedule</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-sm text-yellow-900 font-bold uppercase tracking-wider mb-2">Service-Zeiten</div>
+                                            <div className="text-lg font-bold">{CONFIG.contact.hours}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="py-20 bg-[#0a0a0f] border-t border-white/5">
+                <div className="max-w-7xl mx-auto px-6 lg:px-10">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                        <div className="flex items-center gap-5">
+                            <a href="#" className="group block">
+                                <img src={CONFIG.company.logo} alt="Logo" className="h-10 w-auto object-contain opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 [filter:grayscale(1)_drop-shadow(0_0_1px_rgba(255,255,255,0.8))_drop-shadow(0_0_8px_rgba(255,255,255,0.2))] group-hover:[filter:grayscale(0)_drop-shadow(0_0_1px_rgba(255,255,255,0.8))_drop-shadow(0_0_8px_rgba(255,255,255,0.2))]" />
+                            </a>
+                            <div>
+                                <div className="font-bold text-white tracking-wide">{CONFIG.company.name}</div>
+                                <div className="text-[10px] text-[#FDE800] uppercase tracking-widest leading-relaxed font-bold">{CONFIG.company.tagline}</div>
+                            </div>
+                        </div>
+                        <div className="flex gap-8 text-sm text-gray-500">
+                            <a href="#" className="hover:text-[#FDE800] transition-colors">Impressum</a>
+                            <a href="#" className="hover:text-[#FDE800] transition-colors">Datenschutz</a>
+                        </div>
+                    </div>
+                    <div className="mt-12 pt-8 border-t border-white/5 text-center text-sm text-gray-600">
+                        © 2026 {CONFIG.company.name}. Alle Rechte vorbehalten.
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const App = () => (
+            <div className="min-h-screen">
+                <Navbar />
+                <Hero />
+                <Services />
+                <Contact />
+                <Footer />
+
+                {/* Mobile CTA */}
+                <div className="fixed bottom-6 left-6 right-6 lg:hidden z-50">
+                    <a href={`tel:${CONFIG.contact.phone}`} className="bg-[#FDE800] text-black flex justify-between items-center p-5 rounded-2xl shadow-2xl">
+                        <div>
+                            <div className="text-[10px] text-yellow-900 font-bold uppercase tracking-wider">Sofort anrufen</div>
+                            <div className="text-lg font-bold">{CONFIG.contact.phone}</div>
+                        </div>
+                        <div className="bg-black/10 p-3 rounded-xl">
+                            <span className="material-symbols-outlined text-2xl">call</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        );
+
+        createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+
+</html>
