@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html class="dark" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Herbert Dähn GmbH | Premium Karosserie & Lack</title>
+
+    <!-- Frameworks & Fonts -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
+        rel="stylesheet">
+
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #a01050;
+            --bg-dark: #0a0a0f;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(160, 16, 80, 0.9) 0%, rgba(128, 13, 64, 0.7) 100%);
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(160, 16, 80, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .text-shadow-strong {
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .material-symbols-outlined {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+        }
+
+        .no-clipping {
+            overflow: visible !important;
+        }
+
+        .fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+
+<body class="selection:bg-[#a01050] selection:text-white">
+    <!-- Back to Dashboard -->
+    <a href="preview.html"
+        class="fixed top-4 left-4 z-[100] flex items-center justify-center w-10 h-10 bg-black/40 backdrop-blur-md border border-white/10 rounded-full shadow-2xl text-white hover:bg-white hover:text-black transition-all duration-300"
+        title="Zurück zum Dashboard">
+        <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+
+        const CONFIG = {
+            company: {
+                name: "",
+                shortName: "HD",
+                tagline: "",
+                primaryColor: "#a01050"
+            },
+            hero: {
+                title: "Exzellenz in Lack & Form.",
+                subtitle: "Ihr Partner für High-End Unfallinstandsetzung in Hamburg",
+                desc: "Seit über vier Jahrzehnten vereinen wir handwerkliche Leidenschaft mit modernster Technik. Wir bringen Ihr Fahrzeug zurück in den Neuzustand – mit Brief und Siegel.",
+                image: "images/service3.jpg"
+            },
+            services: [
+                {
+                    title: <span>Unfallinstand-<br />setzung</span>,
+                    icon: "verified",
+                    desc: "Fachgerechte Reparatur nach Herstellervorgaben mit originalen Ersatzteilen.",
+                    image: "../../images/mocks/karosseriebau.avif"
+                },
+                {
+                    title: <span>Präzisions-<br />lackierung</span>,
+                    icon: "palette",
+                    desc: "Digitale Farbtonmessung und umweltschonende Lacke für ein makelloses Ergebnis.",
+                    image: "../../images/mocks/lackierung.avif"
+                },
+                {
+                    title: "Smart-Repair",
+                    icon: "auto_fix_high",
+                    desc: "Effiziente Beseitigung von Parkschrammen und Dellen ohne großen Aufwand.",
+                    image: "../../images/mocks/Nahaufnahme1.avif"
+                },
+                {
+                    title: "Full-Service",
+                    icon: "support_agent",
+                    desc: "Vom Abschleppdienst bis zum Urlaubsservice – wir kümmern uns um alles.",
+                    image: "../../images/mocks/unfallservice.avif"
+                }
+            ],
+            brands: ["DEKRA", "Partner aller Versicherungen", "Originalteile", "Meisterbetrieb", "Seit 1980"],
+            contact: {
+                phone: "+49 40 500 50 80",
+                email: "willkommen@daehn-hamburg.de",
+                address: "Hindenburgstraße 169, 22297 Hamburg",
+                hours: "Mo-Do: 7:30 - 17:30, Fr: 7:30 - 16:00"
+            },
+            reviews: {
+                rating: 4.9,
+                total: 184,
+                list: [
+                    { name: "Andreas L.", date: "Vor 2 Wochen", text: "Absolute Profis am Werk. Die Lackierung ist perfekt geworden, keine Farbunterschiede erkennbar.", stars: 5 },
+                    { name: "Sabine K.", date: "Vor 1 Monat", text: "Kompetent, freundlich und extrem sauber gearbeitet. Mein Auto sieht aus wie neu.", stars: 5 },
+                    { name: "Markus W.", date: "Vor 3 Monaten", text: "Beste Lackiererei in Hamburg. Der Service ist erstklassig und die Preise fair.", stars: 5 }
+                ]
+            }
+        };
+
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 30);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-[#0a0a0f]/95 backdrop-blur-xl py-4 border-b border-white/5' : 'bg-transparent py-6'}`}>
+                    <div className="max-w-7xl mx-auto px-6 lg:px-10 flex justify-between items-center">
+                        <a href="#" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                            <img src="images/logo.png" className="h-14 md:h-[102px] w-auto invert brightness-0" />
+                            <div className="hidden md:block">
+                                <div className="text-lg font-black tracking-tight text-[#a01050]">{CONFIG.company.name}</div>
+                                <div className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">{CONFIG.company.tagline}</div>
+                            </div>
+                        </a>
+                        <div className="hidden lg:flex items-center gap-10 text-[11px] font-black uppercase tracking-widest">
+                            <a href="#services" className="hover:text-[#a01050] transition-colors">Leistungen</a>
+                            <a href="#reviews" className="hover:text-[#a01050] transition-colors">Bewertungen</a>
+                            <a href="#contact" className="bg-[#a01050] px-6 py-3 rounded-md hover:bg-[#800d40] transition-all shadow-lg shadow-[#a01050]/20">Termin vereinbaren</a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        const Hero = () => (
+            <section className="relative min-h-screen flex items-center overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                    <img src={CONFIG.hero.image} className="w-full h-full object-cover grayscale-[0.3]" alt="Hero" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-32">
+                    <div className="max-w-3xl">
+                        <div className="inline-block bg-[#a01050]/20 border border-[#a01050]/30 backdrop-blur-sm px-4 py-2 rounded text-[#a01050] text-[10px] font-black uppercase tracking-[0.3em] mb-8 animate-fade-in-up">
+                            Seit 1980 in Hamburg
+                        </div>
+
+                        <h1 className="text-6xl md:text-8xl font-black leading-[1.05] tracking-tighter mb-6 text-shadow-strong animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                            {CONFIG.hero.title}
+                        </h1>
+
+                        <p className="text-xl md:text-2xl text-[#a01050] font-black mb-4 text-shadow-strong animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                            {CONFIG.hero.subtitle}
+                        </p>
+
+                        <p className="text-lg text-gray-300 max-w-2xl mb-12 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                            {CONFIG.hero.desc}
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row gap-5 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+                            <a href="#contact" className="bg-[#a01050] text-white px-10 py-5 rounded font-black uppercase tracking-widest text-center shadow-2xl shadow-[#a01050]/30 hover:bg-[#800d40] hover:scale-105 transition-all text-sm">
+                                Kontakt aufnehmen
+                            </a>
+                            <a href="#services" className="bg-white/5 backdrop-blur-md border border-white/10 text-white px-10 py-5 rounded font-black uppercase tracking-widest text-center hover:bg-white/10 transition-all text-sm">
+                                Unsere Expertise
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Services = () => (
+            <section id="services" className="py-32 bg-gradient-to-b from-[#0a0a0f] to-[#0d0d14]">
+                <div className="max-w-7xl mx-auto px-6 lg:px-10">
+                    {/* Section Header */}
+                    <div className="text-center mb-20">
+                        <div className="inline-block px-4 py-2 rounded text-[#a01050] text-[10px] font-black uppercase tracking-[0.5em] mb-6">
+                            Premium Qualität
+                        </div>
+                        <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-6">
+                            Unsere <span className="text-[#a01050]">Services</span>
+                        </h2>
+                        <div className="h-1 w-24 bg-[#a01050] mx-auto opacity-50"></div>
+                    </div>
+
+                    {/* Services Grid */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {CONFIG.services.map((service, i) => (
+                            <div key={i} className="bg-gradient-to-br from-[#11111a] to-[#09090f] border border-white/5 rounded-2xl overflow-hidden card-hover">
+                                <div className="h-56 overflow-hidden relative">
+                                    <img src={service.image} className="w-full h-full object-cover grayscale-[0.8] transition-all duration-700 hover:grayscale-0" alt={service.title} />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent"></div>
+                                </div>
+                                <div className="p-10">
+                                    <div className="w-12 h-12 bg-[#a01050]/10 border border-[#a01050]/20 rounded flex items-center justify-center text-[#a01050] mb-8">
+                                        <span className="material-symbols-outlined text-3xl">{service.icon}</span>
+                                    </div>
+                                    <h3 className="text-lg md:text-xl font-black mb-4 uppercase tracking-wider leading-tight">{service.title}</h3>
+                                    <p className="text-gray-500 text-sm leading-relaxed">{service.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Brand Trust Bar */}
+                    <div className="mt-24 pt-16 border-t border-white/5 flex flex-wrap justify-center gap-12 text-[10px] text-gray-600 font-black uppercase tracking-[0.3em]">
+                        {CONFIG.brands.map((brand, i) => (
+                            <div key={i} className="hover:text-[#a01050] transition-colors">{brand}</div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Reviews = () => (
+            <section id="reviews" className="py-32 bg-[#0a0a0f]">
+                <div className="max-w-7xl mx-auto px-6 lg:px-10">
+                    <div className="flex flex-col lg:flex-row items-center justify-between mb-12 sm:mb-20 gap-8 sm:gap-10">
+                        <div className="text-center lg:text-left">
+                            <div className="text-[#a01050] text-[10px] font-black uppercase tracking-[0.3em] mb-4 sm:mb-6">Kundenstimmen</div>
+                            <h2 className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-4 sm:mb-6">Was Kunden <span className="text-[#a01050]">sagen</span></h2>
+                            <p className="text-lg sm:text-xl text-gray-500 font-medium tracking-wide">Exzellenz durch Erfahrung</p>
+                        </div>
+
+                        <div className="bg-white/5 backdrop-blur-xl border border-white/10 px-5 py-6 sm:p-10 rounded-2xl flex items-center justify-center sm:justify-start gap-3 sm:gap-10 w-full sm:w-auto">
+                            <div className="text-center">
+                                <div className="text-4xl sm:text-6xl font-black text-white mb-1 sm:mb-2">{CONFIG.reviews.rating}</div>
+                                <div className="flex text-[#a01050] justify-center scale-90 sm:scale-100">
+                                    {[...Array(5)].map((_, i) => (
+                                        <span key={i} className="material-symbols-outlined fill-1">star</span>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="h-12 sm:h-16 w-px bg-white/10"></div>
+                            <div>
+                                <div className="text-[10px] sm:text-sm font-black text-gray-400 uppercase tracking-widest mb-1">Empfehlungsrate</div>
+                                <div className="text-white font-black text-base sm:text-xl leading-tight">100% Kundenzufriedenheit</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+                        {CONFIG.reviews.list.map((review, i) => (
+                            <div key={i} className="bg-[#11111a] border border-white/5 p-8 sm:p-12 rounded-2xl card-hover relative">
+                                <div className="flex gap-1 text-[#a01050] mb-8 scale-75 origin-left">
+                                    {[...Array(review.stars)].map((_, i) => (
+                                        <span key={i} className="material-symbols-outlined text-sm fill-1">star</span>
+                                    ))}
+                                </div>
+                                <p className="text-gray-300 mb-10 italic text-lg leading-relaxed font-light">"{review.text}"</p>
+                                <div className="flex items-center gap-4">
+                                    <div className="w-10 h-10 bg-[#a01050]/20 rounded flex items-center justify-center text-[#a01050] font-black text-sm">
+                                        {review.name.charAt(0)}
+                                    </div>
+                                    <div>
+                                        <div className="font-black text-white text-sm uppercase tracking-wider">{review.name}</div>
+                                        <div className="text-[10px] text-gray-600 font-black uppercase tracking-widest">{review.date}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Contact = () => (
+            <section id="contact" className="py-32 bg-black">
+                <div className="max-w-7xl mx-auto px-6 lg:px-10">
+                    <div className="bg-gradient-to-br from-[#11111a] to-[#0a0a0f] border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+                        <div className="grid lg:grid-cols-2">
+                            <div className="p-8 sm:p-16 lg:p-24 border-b lg:border-b-0 lg:border-r border-white/5">
+                                <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-10 leading-[1.1] tracking-tighter">
+                                    Ihr Weg zu uns.
+                                </h2>
+                                <p className="text-gray-400 text-lg sm:text-xl mb-12 sm:mb-16 font-light leading-relaxed">
+                                    Besuchen Sie uns in der Hindenburgstraße oder rufen Sie uns direkt an. Wir beraten Sie individuell und meisterhaft.
+                                </p>
+
+                                <div className="space-y-10">
+                                    <div className="flex items-center gap-6 group cursor-pointer">
+                                        <div className="w-14 h-14 flex-shrink-0 bg-white/5 border border-white/10 rounded flex items-center justify-center text-white transition-all group-hover:bg-[#a01050] group-hover:border-[#a01050]">
+                                            <span className="material-symbols-outlined text-2xl no-clipping">call</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] text-gray-500 font-black uppercase tracking-[0.3em] mb-2 group-hover:text-[#a01050]">Anrufen</div>
+                                            <div className="text-lg sm:text-2xl font-black tracking-tight group-hover:text-white transition-colors">{CONFIG.contact.phone}</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center gap-6 group cursor-pointer">
+                                        <div className="w-14 h-14 flex-shrink-0 bg-white/5 border border-white/10 rounded flex items-center justify-center text-white transition-all group-hover:bg-[#a01050] group-hover:border-[#a01050]">
+                                            <span className="material-symbols-outlined text-2xl no-clipping">location_on</span>
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] text-gray-500 font-black uppercase tracking-[0.3em] mb-2 group-hover:text-[#a01050]">Standort</div>
+                                            <div className="text-xl font-black tracking-tight group-hover:text-white transition-colors">{CONFIG.contact.address}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="p-10 sm:p-16 lg:p-24 bg-[#0a0a0f] flex flex-col justify-center">
+                                <div className="mb-10 sm:mb-12">
+                                    <div className="text-[10px] text-gray-500 font-black uppercase tracking-[0.3em] mb-4">Öffnungszeiten</div>
+                                    <div className="text-lg sm:text-xl font-black text-white leading-relaxed whitespace-pre-line">
+                                        {CONFIG.contact.hours}
+                                    </div>
+                                </div>
+                                <a href={`mailto:${CONFIG.contact.email}`} className="group flex items-center justify-between bg-white text-black p-6 sm:p-8 rounded font-black uppercase tracking-[0.3em] hover:bg-[#a01050] hover:text-white transition-all duration-500 text-xs sm:text-sm">
+                                    E-Mail senden
+                                    <span className="material-symbols-outlined group-hover:translate-x-4 transition-transform">arrow_forward</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="py-20 bg-black border-t border-white/5">
+                <div className="max-w-7xl mx-auto px-6 lg:px-10">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.3em] text-gray-600">
+                        <div className="flex items-center gap-3 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                            <img src="images/logo.png" className="h-[62px] w-auto invert brightness-0" />
+                            <span className="text-[#a01050]">{CONFIG.company.name}</span>
+                        </div>
+                        <div className="flex gap-10">
+                            <a href="#" className="hover:text-[#a01050] transition-colors">Impressum</a>
+                            <a href="#" className="hover:text-[#a01050] transition-colors">Datenschutz</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const App = () => (
+            <div className="min-h-screen">
+                <Navbar />
+                <Hero />
+                <Services />
+                <Reviews />
+                <Contact />
+                <Footer />
+
+                {/* Mobile CTA */}
+                <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-3rem)] max-w-sm lg:hidden z-50">
+                    <a href={`tel:${CONFIG.contact.phone}`} className="bg-[#a01050] text-white flex justify-between items-center px-6 py-4 rounded-xl shadow-2xl shadow-[#a01050]/40">
+                        <span className="font-black uppercase tracking-widest text-xs md:text-sm">{CONFIG.contact.phone}</span>
+                        <div className="w-10 h-10 bg-white/10 rounded flex items-center justify-center">
+                            <span className="material-symbols-outlined text-xl no-clipping">call</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        );
+
+        createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+
+</html>

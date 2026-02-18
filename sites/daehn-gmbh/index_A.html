@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html class="light" lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dähn Herbert GmbH | Autolackierei & Karosseriefachbetrieb</title>
+
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
+        rel="stylesheet">
+
+    <!-- React Dependencies -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #a01050;
+            --secondary-color: #00aba9;
+            --bg-light: #f9fafb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .simple-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .simple-card {
+            transition: transform 0.2s ease;
+        }
+
+        .simple-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            -moz-osx-font-smoothing: grayscale;
+            font-feature-settings: 'liga';
+            vertical-align: middle;
+        }
+
+        .fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color);
+            text-shadow: 0 0 10px rgba(0, 171, 169, 0.4);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <!-- Back to Dashboard -->
+    <a href="preview.html"
+        class="fixed top-4 left-4 z-[100] flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-md border border-gray-200 rounded-full shadow-lg text-[#a01050] hover:bg-[#a01050] hover:text-white transition-all duration-300"
+        title="Zurück zum Dashboard">
+        <span class="material-symbols-outlined">arrow_back</span>
+    </a>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+
+        const CONFIG = {
+            company: {
+                name: "",
+                shortName: "Herbert Dähn",
+                tagline: "",
+                primaryColor: "#a01050",
+                secondaryColor: "#00aba9"
+            },
+            hero: {
+                title: <span>Autolackiererei &<br className="hidden lg:block" /> Karosseriefach-<br />betrieb</span>,
+                subtitle: "Vier Jahrzehnte Kompetenz und Leidenschaft in Hamburg",
+                desc: "In dem Unternehmen Herbert Dähn GmbH stecken vier Jahrzehnte Kompetenz und Leidenschaft: ein Familienbetrieb getragen und geprägt durch gelebte Berufung.",
+                image: "images/service3.jpg"
+            },
+            services: [
+                { title: "Karosserie", icon: "precision_manufacturing", desc: "Fachgerechte Instandsetzung von Karosserieschäden.", price: "Meisterqualität", image: "../../images/mocks/karosseriebau.avif" },
+                { title: "Lackiererei", icon: "format_paint", desc: "Umweltschonende Lackierverfahren für perfekte Ergebnisse.", price: "Digitaler Farbmix", image: "../../images/mocks/lackierung.avif" },
+                { title: "Smart-Repair", icon: "magic_button", desc: "Schnelle und kostengünstige Behebung kleinerer Schäden.", price: "Effizient & Günstig", image: "../../images/mocks/Nahaufnahme1.avif" },
+                { title: "Service", icon: "support_agent", desc: "Urlaubsservice und Abschleppnotdienst für Ihre Mobilität.", price: "Rund-um-Sorglos", image: "../../images/mocks/unfallservice.avif" }
+            ],
+            contact: {
+                phone: "+49 40 500 50 80",
+                address: "Hindenburgstraße 169, 22297 Hamburg",
+                hours: "Mo - Do: 7:30 - 17:30 Uhr, Fr: 7:30 - 16:00 Uhr"
+            },
+            reviews: {
+                rating: 4.9,
+                total: 184,
+                list: [
+                    { name: "M. Petersen", date: "Vor 1 Woche", text: "Hervorragende Arbeit bei der Unfallinstandsetzung. Man sieht absolut nichts mehr!", stars: 5 },
+                    { name: "S. Neumann", date: "Vor 3 Wochen", text: "Sehr kompetente Beratung und fairer Preis für die Lackierung. Sehr zu empfehlen.", stars: 5 },
+                    { name: "K. Müller", date: "Vor 1 Monat", text: "Smart-Repair hat super geklappt. Schnell und unkompliziert.", stars: 5 }
+                ]
+            }
+        };
+
+        const Navbar = () => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <nav className={`sticky top-0 z-50 bg-white transition-all duration-300 ${scrolled ? 'shadow-md py-2' : 'py-3'}`}>
+                    <div className="max-w-6xl mx-auto px-2 sm:px-4 flex justify-between items-center">
+                        <a href="#" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                            <img src="images/logo.png" className="h-10 md:h-[122px] w-auto bg-[#a01050] p-1 md:p-3.5 rounded shadow-sm" alt="Logo" />
+                            <div className="hidden xs:block sm:block">
+                                <div className="font-bold text-[10px] md:text-xl leading-tight text-[#a01050] line-clamp-1">{CONFIG.company.name}</div>
+                                <div className="text-[8px] md:text-[11px] text-gray-400 uppercase tracking-tight leading-none hidden md:block">{CONFIG.company.tagline}</div>
+                            </div>
+                        </a>
+                        <div className="flex items-center gap-2 md:gap-8">
+                            <div className="hidden lg:flex items-center gap-6 text-[11px] font-bold uppercase tracking-wider">
+                                <a href="#services" className="nav-link transition-colors">Leistungen</a>
+                                <a href="#reviews" className="nav-link transition-colors">Bewertungen</a>
+                                <a href="#contact" className="nav-link transition-colors">Anfahrt</a>
+                            </div>
+                            <a href={`tel:${CONFIG.contact.phone}`} className="bg-[#a01050] text-white h-10 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-[#800d40] transition-all shadow-md active:scale-95">
+                                <span className="material-symbols-outlined text-xl">call</span>
+                                <span className="hidden sm:inline text-xs font-extrabold uppercase tracking-widest">Anrufen</span>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        const Hero = () => (
+            <section className="bg-white overflow-hidden">
+                <div className="max-w-6xl mx-auto px-4 py-12 md:py-24">
+                    <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+                        <div className="order-2 md:order-1 relative z-10">
+                            <div className="inline-block bg-[#00aba9]/10 text-[#00aba9] px-3 py-1 rounded font-bold text-[10px] uppercase tracking-widest mb-6">
+                                Dekra-geprüfte Fachwerkstatt
+                            </div>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 text-gray-900">
+                                {CONFIG.hero.title}
+                            </h1>
+                            <p className="text-xl text-[#a01050] mb-4 font-bold">{CONFIG.hero.subtitle}</p>
+                            <p className="text-gray-600 mb-8 leading-relaxed max-w-lg">{CONFIG.hero.desc}</p>
+
+                            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                                <a href="#contact" className="bg-[#a01050] text-white px-8 py-4 rounded font-bold text-center hover:bg-[#800d40] transition-all shadow-lg hover:shadow-[#a01050]/20">
+                                    Termin vereinbaren
+                                </a>
+                                <div className="flex flex-col justify-center">
+                                    <span className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Direktkontakt</span>
+                                    <a href={`tel:${CONFIG.contact.phone}`} className="text-lg font-black text-gray-900 hover:text-[#00aba9] transition-colors">
+                                        {CONFIG.contact.phone}
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* Trust Indicators */}
+                            <div className="grid grid-cols-3 gap-4 pt-8 border-t border-gray-100">
+                                <div>
+                                    <div className="text-xl font-black text-[#a01050]">40+</div>
+                                    <div className="text-[10px] text-gray-500 font-bold uppercase">Jahre Expertise</div>
+                                </div>
+                                <div>
+                                    <div className="text-xl font-black text-[#a01050]">100%</div>
+                                    <div className="text-[10px] text-gray-500 font-bold uppercase">Originalteile</div>
+                                </div>
+                                <div>
+                                    <div className="text-xl font-black text-[#a01050]">Dekra</div>
+                                    <div className="text-[10px] text-gray-500 font-bold uppercase">Zertifiziert</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="order-1 md:order-2 relative">
+                            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                                <img src={CONFIG.hero.image} className="w-full h-auto aspect-[4/3] object-cover" alt="Herbert Dähn GmbH" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                            </div>
+                            <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl hidden lg:block border border-gray-100">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 bg-[#00aba9] rounded-full flex items-center justify-center text-white">
+                                        <span className="material-symbols-outlined text-2xl">eco</span>
+                                    </div>
+                                    <div>
+                                        <div className="font-bold text-sm">Umweltschonend</div>
+                                        <div className="text-xs text-gray-500">Lackierverfahren</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Services = () => (
+            <section id="services" className="py-20 bg-gray-50">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <div className="text-[#a01050] font-black uppercase text-xs tracking-[0.2em] mb-4">Was wir für Sie tun</div>
+                        <h2 className="text-3xl md:text-5xl font-black mb-4">Unsere Leistungen</h2>
+                        <div className="h-1 w-20 bg-[#00aba9] mx-auto"></div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {CONFIG.services.map((service, i) => (
+                            <div key={i} className="bg-white rounded-xl overflow-hidden border border-gray-100 simple-card shadow-sm hover:shadow-xl transition-all">
+                                <div className="h-48 overflow-hidden relative">
+                                    <img src={service.image} className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-500" alt={service.title} />
+                                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded text-[10px] font-black text-[#a01050] uppercase">
+                                        {service.price}
+                                    </div>
+                                </div>
+                                <div className="p-6">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="w-10 h-10 bg-[#a01050]/10 rounded-lg flex items-center justify-center text-[#a01050]">
+                                            <span className="material-symbols-outlined text-2xl">{service.icon}</span>
+                                        </div>
+                                        <h3 className="text-lg font-black">{service.title}</h3>
+                                    </div>
+                                    <p className="text-sm text-gray-600 mb-6 leading-relaxed">{service.desc}</p>
+                                    <a href="#contact" className="text-xs font-bold text-[#00aba9] uppercase tracking-wider flex items-center gap-2 hover:gap-3 transition-all">
+                                        Mehr erfahren <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </a>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Reviews = () => (
+            <section id="reviews" className="py-20 bg-white">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="grid lg:grid-cols-3 gap-12 items-center">
+                        <div className="lg:col-span-1">
+                            <h2 className="text-3xl md:text-4xl font-black mb-6">Das sagen unsere Kunden</h2>
+                            <p className="text-gray-600 mb-8">Transparenz und Vertrauen sind die Basis unserer Arbeit seit über 40 Jahren.</p>
+
+                            <div className="bg-[#a01050] text-white p-6 rounded-2xl shadow-xl shadow-[#a01050]/20">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="text-4xl font-black">{CONFIG.reviews.rating}</div>
+                                    <div className="flex text-yellow-400">
+                                        {[...Array(5)].map((_, i) => (
+                                            <span key={i} className="material-symbols-outlined fill-1">star</span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="text-sm font-bold opacity-80 uppercase tracking-widest">Google Bewertung</div>
+                                <div className="text-xs opacity-60 mt-1">{CONFIG.reviews.total} Rezensionen insgesamt</div>
+                            </div>
+                        </div>
+
+                        <div className="lg:col-span-2 grid md:grid-cols-2 gap-6">
+                            {CONFIG.reviews.list.map((review, i) => (
+                                <div key={i} className="bg-gray-50 p-8 rounded-xl border border-gray-100 simple-card relative">
+                                    <span className="absolute top-4 right-6 text-6xl text-gray-200 font-serif leading-none italic">"</span>
+                                    <div className="flex gap-1 text-yellow-400 mb-4 scale-75 origin-left">
+                                        {[...Array(review.stars)].map((_, i) => (
+                                            <span key={i} className="material-symbols-outlined fill-1">star</span>
+                                        ))}
+                                    </div>
+                                    <p className="text-gray-700 mb-6 italic text-sm leading-relaxed relative z-10">{review.text}</p>
+                                    <div className="flex justify-between items-center">
+                                        <div className="font-bold text-sm text-gray-900">{review.name}</div>
+                                        <div className="text-[10px] text-gray-500 font-bold uppercase">{review.date}</div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Contact = () => (
+            <section id="contact" className="py-20 bg-white">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="grid lg:grid-cols-5 gap-1 shadow-2xl rounded-3xl overflow-hidden border border-gray-100">
+                        <div className="lg:col-span-2 bg-[#a01050] text-white p-8 sm:p-12 md:p-16">
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 sm:mb-8 leading-tight">Kontakt & Anfahrt</h2>
+                            <p className="text-[#f9a8d4] text-base sm:text-lg mb-8 sm:mb-12">Haben Sie Fragen oder benötigen Sie dringend Hilfe? Wir sind für Sie da.</p>
+
+                            <div className="space-y-8">
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <span className="material-symbols-outlined text-2xl">call</span>
+                                    </div>
+                                    <div>
+                                        <div className="text-[10px] uppercase font-bold tracking-widest text-[#f472b6] mb-1 text-xs">Telefon</div>
+                                        <div className="text-lg sm:text-xl md:text-2xl font-black tracking-tight">{CONFIG.contact.phone}</div>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <span className="material-symbols-outlined text-2xl">location_on</span>
+                                    </div>
+                                    <div>
+                                        <div className="text-[10px] uppercase font-bold tracking-widest text-[#f472b6] mb-1">Adresse</div>
+                                        <div className="text-lg font-bold leading-snug">{CONFIG.contact.address}</div>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4">
+                                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                        <span className="material-symbols-outlined text-2xl">schedule</span>
+                                    </div>
+                                    <div>
+                                        <div className="text-[10px] uppercase font-bold tracking-widest text-[#f472b6] mb-1">Öffnungszeiten</div>
+                                        <div className="text-base font-bold whitespace-pre-line">{CONFIG.contact.hours}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="lg:col-span-3 bg-gray-50 p-8 sm:p-12 md:p-16 relative overflow-hidden">
+                            {/* Simple Form or Map Placeholder */}
+                            <div className="relative z-10 h-full flex flex-col">
+                                <h3 className="text-2xl font-black mb-8 uppercase tracking-widest">Senden Sie uns eine Nachricht</h3>
+                                <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                                    <input type="text" placeholder="Name" className="bg-white border-gray-200 p-4 rounded-xl text-sm focus:ring-2 focus:ring-[#a01050] outline-none" />
+                                    <input type="email" placeholder="E-Mail" className="bg-white border-gray-200 p-4 rounded-xl text-sm focus:ring-2 focus:ring-[#a01050] outline-none" />
+                                </div>
+                                <textarea placeholder="Wie können wir helfen?" rows="4" className="bg-white border-gray-200 p-4 rounded-xl text-sm focus:ring-2 focus:ring-[#a01050] outline-none mb-6"></textarea>
+                                <button className="bg-[#00aba9] text-white py-4 rounded-xl font-black uppercase tracking-[0.2em] shadow-lg shadow-[#00aba9]/20 hover:bg-[#008f8d] transition-all text-xs sm:text-sm">
+                                    Nachricht senden
+                                </button>
+
+                                <div className="mt-auto pt-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+                                    <div className="text-[10px] font-black uppercase tracking-widest text-gray-400 whitespace-nowrap">Zertifizierungen:</div>
+                                    <div className="flex flex-wrap gap-x-6 gap-y-2 opacity-50 grayscale transition-all hover:grayscale-0 hover:opacity-100">
+                                        <div className="font-black text-[10px] sm:text-xs">DEKRA geprüft</div>
+                                        <div className="font-black text-[10px] sm:text-xs">Partner aller Versicherungen</div>
+                                        <div className="font-black text-[10px] sm:text-xs">Meisterfachbetrieb</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Abstract background shape */}
+                            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-[#00aba9]/5 rounded-full blur-3xl"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="py-12 bg-white border-t border-gray-100">
+                <div className="max-w-6xl mx-auto px-4">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                        <div className="flex items-center gap-4">
+                            <img src="images/logo.png" className="h-[78px] w-auto bg-[#a01050] p-2 rounded transition-all hover:opacity-100" />
+                            <div>
+                                <div className="font-black text-sm text-[#a01050] tracking-tight">{CONFIG.company.name}</div>
+                                <div className="text-gray-400 text-[10px] font-bold uppercase tracking-widest">© 2026 Alle Rechte vorbehalten</div>
+                            </div>
+                        </div>
+                        <div className="flex gap-8 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
+                            <a href="#" className="hover:text-[#a01050] transition-colors">Impressum</a>
+                            <a href="#" className="hover:text-[#a01050] transition-colors">Datenschutz</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const App = () => (
+            <div className="min-h-screen selection:bg-[#a01050] selection:text-white">
+                <Navbar />
+                <Hero />
+                <Services />
+                <Reviews />
+                <Contact />
+                <Footer />
+
+                {/* Mobile CTA */}
+                <div className="fixed bottom-6 left-6 right-6 md:hidden z-50">
+                    <a href={`tel:${CONFIG.contact.phone}`} className="bg-[#a01050] text-white flex justify-between items-center p-5 rounded-2xl shadow-2xl shadow-[#a01050]/40">
+                        <div>
+                            <div className="text-[10px] text-[#f9a8d4] font-bold uppercase tracking-widest">Direkter Draht</div>
+                            <div className="text-lg font-black">{CONFIG.contact.phone}</div>
+                        </div>
+                        <div className="bg-white/20 p-3 rounded-xl backdrop-blur-md">
+                            <span className="material-symbols-outlined text-2xl">call</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        );
+
+        createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+
+</html>
