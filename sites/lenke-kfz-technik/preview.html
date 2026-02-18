@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Vorschau | Lenke KFZ-Technik × Metriq</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111118;
+            --bg-card: #16161f;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --text-premium: #e8e8f0;
+            --text-muted: #6b6b80;
+            --accent-primary: #cc0000;
+            --accent-glow: rgba(204, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-premium);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .metriq-color {
+            color: #2DB7A3;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #cc0000, #ff4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .preview-card {
+            display: block;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 32px;
+            text-decoration: none;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(204, 0, 0, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .preview-card:hover::before {
+            opacity: 1;
+        }
+
+        .preview-card:hover {
+            border-color: rgba(204, 0, 0, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -15px rgba(204, 0, 0, 0.2);
+        }
+
+        .preview-iframe-wrapper {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+            border: 1px solid var(--border-color);
+        }
+
+        .preview-iframe-wrapper iframe {
+            width: 200%;
+            height: 200%;
+            transform: scale(0.5);
+            transform-origin: top left;
+            border: none;
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .badge-a {
+            background: rgba(204, 0, 0, 0.1);
+            color: #ff4444;
+            border: 1px solid rgba(204, 0, 0, 0.2);
+        }
+
+        .badge-b {
+            background: rgba(204, 0, 0, 0.1);
+            color: #ff4444;
+            border: 1px solid rgba(204, 0, 0, 0.2);
+        }
+
+        .badge-c {
+            background: rgba(204, 0, 0, 0.1);
+            color: #ff4444;
+            border: 1px solid rgba(204, 0, 0, 0.2);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-primary);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #aa0000;
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        .material-symbols-outlined {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+            width: 1em;
+            height: 1em;
+            line-height: 1;
+            vertical-align: middle;
+            font-display: block;
+        }
+
+        .fill-1 {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .stagger-1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        .stagger-2 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .stagger-3 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="border-b border-white/5 bg-[#0a0a0f]/80 backdrop-blur-xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-[#2DB7A3] rounded-lg flex items-center justify-center">
+                    <span class="text-white font-black text-sm">M</span>
+                </div>
+                <span class="font-bold text-lg">Metriq <span class="text-[#6b6b80] font-normal">Studio</span></span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-[#6b6b80] text-sm hidden md:block">Lenke KFZ-Technik e.K.</span>
+                <div class="w-2 h-2 bg-[#2DB7A3] rounded-full animate-pulse"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-16 md:py-24">
+
+        <!-- Hero Section -->
+        <div class="text-center mb-20 md:mb-32 fade-up">
+            <div
+                class="inline-flex items-center gap-2 bg-[#cc0000]/10 border border-[#cc0000]/20 px-4 py-2 rounded-full text-[#ff4444] text-xs font-bold uppercase tracking-widest mb-8">
+                <span class="material-symbols-outlined text-sm">auto_awesome</span>
+                3 Design-Konzepte bereit
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-black mb-4 tracking-tight leading-tight">
+                Willkommen bei <span class="metriq-color">Metriq</span>,<br />
+                <span class="text-gradient leading-relaxed">Lenke KFZ-Technik e.K.</span>
+            </h1>
+
+            <p class="text-[#6b6b80] text-lg max-w-2xl mx-auto leading-relaxed">
+                Wir haben <strong class="text-[#e8e8f0]">3 individuelle Website-Konzepte</strong> für Sie erstellt.
+                Klicken Sie auf eine Vorschau, um das Design in voller Größe zu erleben.
+            </p>
+
+            <!-- Company Info Bar -->
+            <div
+                class="mt-12 inline-flex flex-wrap justify-center gap-6 bg-[#16161f] border border-white/5 px-8 py-5 rounded-2xl text-sm">
+                <div class="flex items-center gap-2 text-[#6b6b80]">
+                    <span class="material-symbols-outlined text-[#cc0000] text-base">location_on</span>
+                    <span>Großmoorbogen 11, 21079 Hamburg</span>
+                </div>
+                <div class="w-px bg-white/5 hidden md:block"></div>
+                <div class="flex items-center gap-2 text-[#6b6b80]">
+                    <span class="material-symbols-outlined text-[#cc0000] text-base">call</span>
+                    <span>040-7661480</span>
+                </div>
+                <div class="w-px bg-white/5 hidden md:block"></div>
+                <div class="flex items-center gap-2 text-[#6b6b80]">
+                    <span class="material-symbols-outlined text-[#cc0000] text-base">verified</span>
+                    <span>Bosch Service Meisterbetrieb</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design Cards Grid -->
+        <div class="grid md:grid-cols-3 gap-8 mb-24">
+
+            <!-- Version A -->
+            <a href="index_A.html" class="preview-card group fade-up stagger-1">
+                <div class="preview-iframe-wrapper mb-6">
+                    <iframe src="index_A.html" title="Version A Preview" loading="lazy"></iframe>
+                </div>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="badge badge-a">Version A</span>
+                    <span
+                        class="material-symbols-outlined text-[#6b6b80] group-hover:text-[#cc0000] transition-colors">open_in_new</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-1 text-[var(--text-premium)]">Klassisch & Klar</h3>
+                <p class="text-[#cc0000] text-xs uppercase font-black tracking-[0.2em] mb-4">
+                    Vertrauen durch Klarheit</p>
+                <p class="text-[var(--text-premium)] text-base leading-relaxed mb-6 font-light opacity-80">
+                    Helles, professionelles Design mit klarer Struktur. Ideal für Kunden, die Seriosität und
+                    Übersichtlichkeit schätzen. Bosch-Rot als Akzentfarbe.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs bg-white/5 px-3 py-1 rounded-full text-[#6b6b80]">Hell</span>
+                    <span class="text-xs bg-white/5 px-3 py-1 rounded-full text-[#6b6b80]">Professionell</span>
+                    <span class="text-xs bg-white/5 px-3 py-1 rounded-full text-[#6b6b80]">Klar</span>
+                </div>
+            </a>
+
+            <!-- Version B -->
+            <a href="index_B.html" class="preview-card group fade-up stagger-2">
+                <div class="preview-iframe-wrapper mb-6">
+                    <iframe src="index_B.html" title="Version B Preview" loading="lazy"></iframe>
+                </div>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="badge badge-b">Version B</span>
+                    <span
+                        class="material-symbols-outlined text-[#6b6b80] group-hover:text-[#cc0000] transition-colors">open_in_new</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-1 text-[var(--text-premium)]">Premium & Dunkel</h3>
+                <p class="text-[#cc0000] text-xs uppercase font-black tracking-[0.2em] mb-4">
+                    Qualität trifft Stil</p>
+                <p class="text-[var(--text-premium)] text-base leading-relaxed mb-6 font-light opacity-80">
+                    Dunkles Premium-Design mit eleganten Animationen. Positioniert Lenke KFZ-Technik als
+                    hochwertigen Bosch-Servicepartner mit modernem Auftritt.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs bg-white/5 px-3 py-1 rounded-full text-[#6b6b80]">Dunkel</span>
+                    <span class="text-xs bg-white/5 px-3 py-1 rounded-full text-[#6b6b80]">Premium</span>
+                    <span class="text-xs bg-white/5 px-3 py-1 rounded-full text-[#6b6b80]">Elegant</span>
+                </div>
+            </a>
+
+            <!-- Version C -->
+            <a href="index_C.html" class="preview-card group fade-up stagger-3">
+                <div class="preview-iframe-wrapper mb-6">
+                    <iframe src="index_C.html" title="Version C Preview" loading="lazy"></iframe>
+                </div>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="badge badge-c">Version C</span>
+                    <span
+                        class="material-symbols-outlined text-[#6b6b80] group-hover:text-[#cc0000] transition-colors">open_in_new</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-1 text-[var(--text-premium)]">Futuristisch & Bold</h3>
+                <p class="text-[#cc0000] text-xs uppercase font-black tracking-[0.2em] mb-4">
+                    Next Level Service</p>
+                <p class="text-[var(--text-premium)] text-base leading-relaxed mb-6 font-light opacity-80">
+                    Futuristisches Neon-Design mit Orbitron-Font und Cinematic-Animationen. Für einen
+                    mutigen, modernen Auftritt der Extraklasse.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs bg-white/5 px-3 py-1 rounded-full text-[#6b6b80]">Futuristisch</span>
+                    <span class="text-xs bg-white/5 px-3 py-1 rounded-full text-[#6b6b80]">Neon</span>
+                    <span class="text-xs bg-white/5 px-3 py-1 rounded-full text-[#6b6b80]">Bold</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Bottom CTA Section -->
+        <div class="bg-[#16161f] border border-white/5 rounded-3xl p-10 md:p-16 text-center fade-up">
+            <div
+                class="w-16 h-16 bg-[#cc0000]/10 border border-[#cc0000]/20 rounded-2xl flex items-center justify-center mx-auto mb-8">
+                <span class="material-symbols-outlined text-[#cc0000] text-3xl">handshake</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-black mb-4">Welches Design gefällt Ihnen?</h2>
+            <p class="text-[#6b6b80] text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+                Wählen Sie Ihr Lieblingsdesign und wir passen es noch weiter an Ihre Wünsche an.
+                Alle Versionen sind vollständig mobiloptimiert.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index_A.html" class="cta-button">
+                    <span class="material-symbols-outlined text-sm">visibility</span>
+                    Version A ansehen
+                </a>
+                <a href="index_B.html" class="cta-button">
+                    <span class="material-symbols-outlined text-sm">visibility</span>
+                    Version B ansehen
+                </a>
+                <a href="index_C.html" class="cta-button">
+                    <span class="material-symbols-outlined text-sm">visibility</span>
+                    Version C ansehen
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 mt-24 py-10">
+        <div
+            class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#6b6b80]">
+            <div>Erstellt von <span class="metriq-color font-bold">Metriq Studio</span> für Lenke KFZ-Technik e.K.</div>
+            <div>© 2026 Alle Rechte vorbehalten</div>
+        </div>
+    </footer>
+</body>
+
+</html>
