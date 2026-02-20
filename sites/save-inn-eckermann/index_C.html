@@ -325,7 +325,7 @@
             <section className="relative min-h-[100dvh] flex items-center lg:items-end overflow-hidden grid-pattern">
                 {/* Animated Background */}
                 <div className="absolute inset-0 z-0 text-center">
-                    <img src={CONFIG.hero.image} className="w-full h-full object-cover cinematic-hero" alt="Hero Vehicle" />
+                    <img src={CONFIG.hero.image} className="w-full h-full object-cover cinematic-hero" alt="Hero Vehicle" fetchpriority="high" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                     <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent hidden lg:block"></div>
                     <div className="absolute inset-0 bg-black/50 lg:hidden"></div>
@@ -391,7 +391,7 @@
                         {CONFIG.services.map((s, i) => (
                             <div key={i} className="ultra-card glass-ultra rounded-2xl overflow-hidden group cursor-default">
                                 <div className="h-64 overflow-hidden relative">
-                                    <img src={s.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={s.title} />
+                                    <img src={s.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={s.title} loading="lazy" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                                 </div>
                                 <div className="p-8">
@@ -416,7 +416,7 @@
                     <div className="grid lg:grid-cols-2 gap-24 items-center">
                         <div className="relative">
                             <div className="aspect-square rounded-2xl overflow-hidden neon-border">
-                                <img src="../../images/mocks/Werkstatt2.jpg" alt="Technology" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
+                                <img src="../../images/mocks/Werkstatt2.jpg" alt="Technology" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" loading="lazy" />
                             </div>
                             <div className="absolute -bottom-12 -right-12 glass-ultra neon-border p-12 rounded-2xl hidden lg:block">
                                 <div className="font-display text-6xl font-black neon-text">FAST</div>
@@ -580,7 +580,7 @@
                 <div className="max-w-screen-2xl mx-auto px-8 lg:px-12">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-12">
                         <div className="flex items-center gap-6">
-                            <img src={CONFIG.company.logo} alt={CONFIG.company.name} className="h-14 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300" />
+                            <img src={CONFIG.company.logo} alt={CONFIG.company.name} className="h-14 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300" loading="lazy" />
                             <div>
                                 <div className="font-display font-black text-sm tracking-wider neon-text">{CONFIG.company.name} ECKERMANN</div>
                                 <div className="text-[8px] uppercase tracking-[0.4em] text-gray-700 font-bold">© 2026 ALL RIGHTS RESERVED</div>
