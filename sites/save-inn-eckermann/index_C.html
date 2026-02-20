@@ -56,6 +56,15 @@
             animation: cinematicZoom 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
+        @media (max-width: 1023px) {
+            .cinematic-hero {
+                animation: none;
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
+        }
+
         /* Neon Glow Effects */
         .neon-glow {
             box-shadow: 0 0 20px rgba(232, 48, 42, 0.7), 0 0 40px rgba(232, 48, 42, 0.4), 0 0 60px rgba(232, 48, 42, 0.2);
@@ -158,6 +167,13 @@
             border: 1px solid rgba(232, 48, 42, 0.1);
         }
 
+        @media (max-width: 1023px) {
+            .glass-ultra {
+                backdrop-filter: none;
+                background: rgba(0, 0, 0, 0.75);
+            }
+        }
+
         /* Grid Pattern Background */
         .grid-pattern {
             background-image:
@@ -188,6 +204,13 @@
             animation: scanline 8s linear infinite;
             pointer-events: none;
             z-index: 9999;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .scanline {
+                display: block;
+            }
         }
 
         .material-symbols-rounded {
@@ -331,9 +354,9 @@
                     <div className="absolute inset-0 bg-black/50 lg:hidden"></div>
                 </div>
 
-                {/* Floating Neon Orbs */}
-                <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#e8302a] rounded-full blur-[150px] opacity-20 floating"></div>
-                <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#1e5fad] rounded-full blur-[150px] opacity-15 floating" style={{ animationDelay: '3s' }}></div>
+                {/* Floating Neon Orbs - Desktop only */}
+                <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#e8302a] rounded-full blur-[150px] opacity-20 floating hidden lg:block"></div>
+                <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#1e5fad] rounded-full blur-[150px] opacity-15 floating hidden lg:block" style={{ animationDelay: '3s' }}></div>
 
                 {/* Content */}
                 <div className="relative z-10 max-w-screen-2xl mx-auto px-6 sm:px-8 lg:px-12 pt-32 sm:pt-40 pb-12 sm:pb-24 w-full">
