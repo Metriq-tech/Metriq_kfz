@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Vorschau | SAVE INN Eckermann × Metriq</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght,FILL@100..700,0..1&display=block"
+        rel="stylesheet">
+    <style>
+        :root {
+            --metriq-dark: #0F2436;
+            --metriq-accent: #2DB7A3;
+            --text-premium: #EAF6F5;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--metriq-dark);
+            color: var(--text-premium);
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(45, 183, 163, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(45, 183, 163, 0.08) 0%, transparent 40%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                height: 100vh;
+                overflow: hidden;
+            }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .preview-card:hover .glass-panel {
+            border-color: var(--metriq-accent);
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--text-premium) 0%, #94a3b8 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .metriq-color {
+            color: var(--metriq-accent);
+        }
+
+        .material-symbols-rounded {
+            display: inline-block;
+            overflow: hidden;
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            font-display: block;
+        }
+    </style>
+</head>
+
+<body class="p-6 md:p-8">
+    <header class="flex justify-center mb-6 shrink-0">
+        <img src="../../images/Metriq_Logo_Transparent.png" alt="Metriq" class="h-24 w-auto opacity-100">
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center max-w-7xl mx-auto w-full overflow-hidden">
+        <!-- Intro Section -->
+        <div class="text-center mb-8 max-w-3xl shrink-0">
+            <div
+                class="inline-block px-3 py-1 rounded-full bg-[#2DB7A3]/10 border border-[#2DB7A3]/20 text-[#2DB7A3] text-[10px] font-black uppercase tracking-widest mb-4">
+                Projekt Vorschau
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black mb-4 tracking-tight leading-tight">
+                Willkommen bei <span class="metriq-color">Metriq</span>,<br />
+                <span class="text-gradient leading-relaxed">SAVE INN Eckermann</span>
+            </h1>
+            <p
+                class="text-[var(--text-premium)] text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto opacity-90">
+                Wählen Sie eine Version aus, um die Live-Vorschau zu starten.
+            </p>
+        </div>
+
+        <!-- Design Versions Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full shrink-0 px-4">
+            <!-- Version A -->
+            <a href="index_A.html" class="preview-card group">
+                <div class="glass-panel h-full p-8 rounded-[2rem] flex flex-col">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-[#2DB7A3]/10 flex items-center justify-center mb-6 border border-[#2DB7A3]/20 group-hover:bg-[#2DB7A3] group-hover:text-white transition-all duration-300">
+                        <span class="material-symbols-rounded text-2xl">auto_awesome</span>
+                    </div>
+                    <div class="flex-grow text-left">
+                        <h3 class="text-2xl font-bold mb-1 text-[var(--text-premium)]">Version A</h3>
+                        <p class="text-[#2DB7A3] text-xs uppercase font-black tracking-[0.2em] mb-4">
+                            KLAR & VERTRAUENSWÜRDIG</p>
+                        <p class="text-[var(--text-premium)] text-base leading-relaxed mb-6 font-light opacity-80">
+                            Sauberes, helles Design mit starker Lesbarkeit. Ideal für Kunden, die Seriosität und
+                            Transparenz in den Vordergrund stellen.
+                        </p>
+                    </div>
+                    <div
+                        class="flex items-center text-[var(--text-premium)] text-xs font-bold tracking-widest uppercase mt-2">
+                        Vorschau <span
+                            class="material-symbols-rounded ml-3 text-[#2DB7A3] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Version B -->
+            <a href="index_B.html" class="preview-card group">
+                <div class="glass-panel h-full p-8 rounded-[2rem] flex flex-col">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-[#2DB7A3]/10 flex items-center justify-center mb-6 border border-[#2DB7A3]/20 group-hover:bg-[#2DB7A3] group-hover:text-white transition-all duration-300">
+                        <span class="material-symbols-rounded text-2xl">speed</span>
+                    </div>
+                    <div class="flex-grow text-left">
+                        <h3 class="text-2xl font-bold mb-1 text-[var(--text-premium)]">Version B</h3>
+                        <p class="text-[#2DB7A3] text-xs uppercase font-black tracking-[0.2em] mb-4">
+                            DARK PREMIUM</p>
+                        <p class="text-[var(--text-premium)] text-base leading-relaxed mb-6 font-light opacity-80">
+                            Dunkles, modernes Design mit Orange-Akzenten und Fullscreen-Hero. Kommuniziert Dynamik,
+                            Kraft und Professionalität.
+                        </p>
+                    </div>
+                    <div
+                        class="flex items-center text-[var(--text-premium)] text-xs font-bold tracking-widest uppercase mt-2">
+                        Vorschau <span
+                            class="material-symbols-rounded ml-3 text-[#2DB7A3] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Version C -->
+            <a href="index_C.html" class="preview-card group">
+                <div class="glass-panel h-full p-8 rounded-[2rem] flex flex-col">
+                    <div
+                        class="w-12 h-12 rounded-xl bg-[#2DB7A3]/10 flex items-center justify-center mb-6 border border-[#2DB7A3]/20 group-hover:bg-[#2DB7A3] group-hover:text-white transition-all duration-300">
+                        <span class="material-symbols-rounded text-2xl">rocket_launch</span>
+                    </div>
+                    <div class="flex-grow text-left">
+                        <h3 class="text-2xl font-bold mb-1 text-[var(--text-premium)]">Version C</h3>
+                        <p class="text-[#2DB7A3] text-xs uppercase font-black tracking-[0.2em] mb-4">
+                            NEON FUTURISTIC</p>
+                        <p class="text-[var(--text-premium)] text-base leading-relaxed mb-6 font-light opacity-80">
+                            Ultramodernes Neon-Design mit cinematic Animationen. Für maximalen Wow-Effekt und einen
+                            unvergesslichen ersten Eindruck.
+                        </p>
+                    </div>
+                    <div
+                        class="flex items-center text-[var(--text-premium)] text-xs font-bold tracking-widest uppercase mt-2">
+                        Vorschau <span
+                            class="material-symbols-rounded ml-3 text-[#2DB7A3] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer Note -->
+    <footer class="mt-6 pt-6 border-t border-white/5 w-full flex justify-center opacity-40 shrink-0">
+        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-premium)]">
+            © 2026 METRIQ — DESIGN CONCEPTS
+        </p>
+    </footer>
+</body>
+
+</html>
