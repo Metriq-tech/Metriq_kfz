@@ -12,9 +12,10 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght,FILL@100..700,0..1&display=block"
         rel="stylesheet">
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- React (Production) -->
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7/babel.min.js"></script>
 
     <style>
         :root {
@@ -50,6 +51,15 @@
 
         .cinematic-hero {
             animation: cinematicZoom 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @media (max-width: 1023px) {
+            .cinematic-hero {
+                animation: none;
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
         }
 
         .neon-glow {
@@ -110,6 +120,12 @@
             animation: float 6s ease-in-out infinite;
         }
 
+        @media (max-width: 1023px) {
+            .floating {
+                display: none;
+            }
+        }
+
         @keyframes textReveal {
             0% {
                 opacity: 0;
@@ -144,6 +160,13 @@
             border: 1px solid rgba(192, 32, 26, 0.15);
         }
 
+        @media (max-width: 1023px) {
+            .glass-ultra {
+                backdrop-filter: none;
+                background: rgba(0, 0, 0, 0.75);
+            }
+        }
+
         .grid-pattern {
             background-image:
                 linear-gradient(rgba(192, 32, 26, 0.04) 1px, transparent 1px),
@@ -172,6 +195,13 @@
             animation: scanline 8s linear infinite;
             pointer-events: none;
             z-index: 9999;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .scanline {
+                display: block;
+            }
         }
 
         .material-symbols-rounded {
