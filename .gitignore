@@ -13,3 +13,6 @@ Roh-Informationen/
 templates/
 **/info.docx
 PREVIEW_LINKS.md
+scripts/
+data/leads.csv
+data/offene_leads.txt
